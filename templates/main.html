@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>クエスト一覧</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #282c34;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* ハンバーガーメニュー */
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 1.5em;
+      cursor: pointer;
+      z-index: 1000;
+      color: #ffd700;
+    }
+
+    .side-menu {
+      position: fixed;
+      left: -250px;
+      top: 0;
+      width: 250px;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      padding-top: 60px;
+      transition: left 0.3s;
+    }
+
+    .side-menu a {
+      display: block;
+      padding: 15px 20px;
+      color: #ffd700;
+      font-size: 1.1em;
+      text-decoration: none;
+      border-bottom: 1px solid #444;
+      transition: background-color 0.3s;
+    }
+
+    .side-menu a:hover {
+      background-color: #444;
+    }
+
+    .side-menu.active {
+      left: 0;
+    }
+
+    /* クエスト一覧 */
+    .content {
+      margin-top: 60px;
+      padding: 20px;
+      width: 90%;
+      max-width: 600px;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #ffd700;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .quest-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .quest-list li {
+      background-color: #333;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      color: #ffd700;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .quest-list li:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <!-- ハンバーガーメニューのトグルボタン -->
+  <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+
+  <!-- サイドメニュー -->
+  <nav class="side-menu" id="sideMenu">
+    <a href="#">アカウント情報</a>
+    <a href="#">クエスト一覧</a>
+    <a href="#">クーポン一覧</a>
+    <a href="#">進行中クエスト</a>
+    <a href="#">ログアウト</a>
+  </nav>
+
+  <!-- メインコンテンツ -->
+  <div class="content">
+    <h1>クエスト一覧</h1>
+    <ul class="quest-list">
+      <li>北海道</li>
+      <li>青森県</li>
+      <li>岩手県</li>
+      <li>宮城県</li>
+      <li>秋田県</li>
+      <li>山形県</li>
+      <li>福島県</li>
+      <li>茨城県</li>
+      <li>栃木県</li>
+      <li>群馬県</li>
+      <li>埼玉県</li>
+      <li>千葉県</li>
+      <li>東京都</li>
+      <li>神奈川県</li>
+      <li>新潟県</li>
+      <li>富山県</li>
+      <li>石川県</li>
+      <li>福井県</li>
+      <li>山梨県</li>
+      <li>長野県</li>
+      <li>岐阜県</li>
+      <li>静岡県</li>
+      <li>愛知県</li>
+      <li>三重県</li>
+      <li>滋賀県</li>
+      <li>京都府</li>
+      <li>大阪府</li>
+      <li>兵庫県</li>
+      <li>奈良県</li>
+      <li>和歌山県</li>
+      <li>鳥取県</li>
+      <li>島根県</li>
+      <li>岡山県</li>
+      <li>広島県</li>
+      <li>山口県</li>
+      <li>徳島県</li>
+      <li>香川県</li>
+      <li>愛媛県</li>
+      <li>高知県</li>
+      <li>福岡県</li>
+      <li>佐賀県</li>
+      <li>長崎県</li>
+      <li>熊本県</li>
+      <li>大分県</li>
+      <li>宮崎県</li>
+      <li>鹿児島県</li>
+      <li>沖縄県</li>
+    </ul>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const sideMenu = document.getElementById("sideMenu");
+      sideMenu.classList.toggle("active");
+    }
+  </script>
+</body>
+</html>
