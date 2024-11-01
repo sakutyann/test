@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>旅コミカル</title>
+  <style>
+    /* CSS */
+    * {
+          
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: url('https://example.com/dark-forest.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 2px solid #bfa34b;
+      border-radius: 15px;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      color: #ffd700;
+      font-size: 1.8em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px #000;
+    }
+
+    .tab-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .tab-buttons button {
+      flex: 1;
+      padding: 10px;
+      font-size: 1em;
+      color: #ffd700;
+      background-color: #4b3b24;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .tab-buttons button:hover {
+      background-color: #6d5630;
+    }
+
+    .tab-buttons button.active {
+      background-color: #6d5630;
+      font-weight: bold;
+    }
+
+    form {
+      display: none;
+    }
+
+    form.active {
+      display: block;
+    }
+
+    input[type="text"], input[type="email"], input[type="password"] {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      background-color: #333;
+      color: #ffd700;
+      font-size: 1em;
+    }
+
+    input::placeholder {
+      color: #bbb;
+    }
+
+    .submit-btn {
+      background-color: #4b3b24;
+      color: #ffd700;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 1em;
+      margin-top: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .submit-btn:hover {
+      background-color: #6d5630;
+    }
+
+    .note {
+      font-size: 0.8em;
+      color: #c9c2a5;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>旅コミカル</h1>
+    <div class="tab-buttons">
+      <button class="tab-button active" onclick="showForm('register')">新規登録</button>
+      <button class="tab-button" onclick="showForm('login')">ログイン</button>
+    </div>
+
+    <form id="register-form" class="active">
+      <input type="text" placeholder="ユーザー名" required>
+      <input type="email" placeholder="メールアドレス" required>
+      <input type="password" placeholder="パスワード" required>
+      <button type="submit" class="submit-btn">登録</button>
+      <p class="note">すでにアカウントをお持ちですか？「ログイン」を選択してください。</p>
+    </form>
+
+    <form id="login-form">
+      <input type="text" placeholder="ユーザー名" required>
+      <input type="password" placeholder="パスワード" required>
+      <button type="submit" class="submit-btn">ログイン</button>
+      <p class="note">初めての方は「新規登録」からご登録ください。</p>
+    </form>
+  </div>
+
+  <script>
+    function showForm(formType) {
+      const registerForm = document.getElementById("register-form");
+      const loginForm = document.getElementById("login-form");
+      const buttons = document.querySelectorAll(".tab-button");
+
+      if (formType === 'register') {
+        registerForm.classList.add("active");
+        loginForm.classList.remove("active");
+        buttons[0].classList.add("active");
+        buttons[1].classList.remove("active");
+      } else {
+        registerForm.classList.remove("active");
+        loginForm.classList.add("active");
+        buttons[0].classList.remove("active");
+        buttons[1].classList.add("active");
+      }
+    }
+  </script>
+</body>
+</html>
