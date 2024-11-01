@@ -2,11 +2,14 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def helloworldfunction(request):
-          return render(request, 'loginandnewgest.html')
+def loginworldfunction(request):
+          return render(request, 'login.html')
 
-def helloworldfunction(request):
+def mainworldfunction(request):
           return render(request, 'main.html')
 
-def helloworldfunction(request):
-          return render(request, 'acount.html')
+def accountworldfunction(request):
+          return render(request, 'account.html')
+
+def logoutworldfunction(request):
+          return render(request, 'logout.html')

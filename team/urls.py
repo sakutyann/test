@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 
-urlpatterns = [path('hello/', views.helloworldfunction),]
-urlpatterns = [path('main/', views.helloworldfunction),]
-urlpatterns = [path('acount/', views.helloworldfunction),]
+urlpatterns = [path('login/', views.loginworldfunction),
+               path('main/', views.mainworldfunction),
+               path('account/', views.accountworldfunction),
+               path('logout/', views.logoutworldfunction),
+               ]

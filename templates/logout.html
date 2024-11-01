@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ログアウト確認</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #282c34;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 2px solid #bfa34b;
+      border-radius: 15px;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      font-size: 1.8em;
+      color: #ffd700;
+      margin-bottom: 20px;
+    }
+
+    .message {
+      font-size: 1.1em;
+      color: #c9c2a5;
+      margin-bottom: 20px;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .button {
+      background-color: #4b3b24;
+      color: #ffd700;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #6d5630;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ログアウト確認</h1>
+    <p class="message">ログアウトしますか？</p>
+    <div class="button-group">
+      <button class="button" onclick="confirmLogout()">はい</button>
+      <button class="button" onclick="cancelLogout()">いいえ</button>
+    </div>
+  </div>
+
+  <script>
+    function confirmLogout() {
+      alert("ログアウトしました");
+      // 実際のログアウト処理にリダイレクトまたは処理を追加
+      window.location.href = "login.html"; // ログイン画面へのリダイレクト例
+    }
+
+    function cancelLogout() {
+      window.history.back(); // 前の画面に戻る
+    }
+  </script>
+</body>
+</html>
