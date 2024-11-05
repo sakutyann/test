@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>クーポン一覧</title>
+  <title>クーポン詳細</title>
   <style>
     * {
       margin: 0;
@@ -25,50 +25,55 @@
       background-color: rgba(0, 0, 0, 0.8);
       border: 2px solid #bfa34b;
       border-radius: 15px;
-      padding: 20px;
+      padding: 30px;
       width: 90%;
       max-width: 400px;
       box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
       color: #c9c2a5;
-      text-align: center;
     }
 
     h1 {
       font-size: 1.8em;
       color: #ffd700;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      text-align: center;
     }
 
-    .coupon {
-      background-color: #333;
+    .details {
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .details p {
+      margin-bottom: 10px;
+    }
+
+    .use-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #4b3b24;
       color: #ffd700;
-      padding: 15px;
-      margin: 10px 0;
-      border-radius: 10px;
+      border: none;
+      border-radius: 5px;
       cursor: pointer;
       font-size: 1.1em;
       transition: background-color 0.3s;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      text-align: center;
     }
 
-    .coupon:hover {
-      background-color: #4b3b24;
+    .use-btn:hover {
+      background-color: #6d5630;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>クーポン一覧</h1>
-    <div class="coupon" onclick="goToCouponDetail('5%OFF Test Coupon 1')">
-      <span>5% OFF クーポン (テスト用 1)</span>
-      <span>&gt;</span>
+    <h1 id="couponName">5% OFF クーポン (テスト用)</h1>
+    <div class="details">
+      <p><strong>詳細:</strong> このクーポンを使用すると、総額の5%が割引されます。</p>
+      <p><strong>説明:</strong> 初回利用者向けの割引クーポンです。他のクーポンとの併用はできません。</p>
     </div>
-    <div class="coupon" onclick="goToCouponDetail('5%OFF Test Coupon 2')">
-      <span>5% OFF クーポン (テスト用 2)</span>
-      <span>&gt;</span>
-    </div>
+    <button class="use-btn" onclick="useCoupon()">使用する</button>
   </div>
 
   

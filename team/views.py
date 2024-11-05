@@ -23,4 +23,10 @@ def questformworldfunction(request):
 def couponformworldfunction(request):
           return render(request, 'coupon.html')
 
+def couponuseformworldfunction(request):
+          return render(request, 'couponuse.html')
+
+def couponendformworldfunction(request):
+          return render(request, 'couponend.html')
+
 

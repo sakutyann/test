@@ -8,5 +8,8 @@ urlpatterns = [path('login/', views.loginworldfunction),
                path('form/', views.formworldfunction),
                path('quest/', views.questformworldfunction),
                path('coupon/', views.couponformworldfunction),
+               path('couponuse/', views.couponuseformworldfunction),
+               path('couponend/', views.couponendformworldfunction),
+               
                
                ]
