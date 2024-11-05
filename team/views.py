@@ -13,3 +13,14 @@ def accountworldfunction(request):
 
 def logoutworldfunction(request):
           return render(request, 'logout.html')
+
+def formworldfunction(request):
+          return render(request, 'form.html')
+
+def questformworldfunction(request):
+          return render(request, 'questform.html')
+
+def couponformworldfunction(request):
+          return render(request, 'coupon.html')
+
+

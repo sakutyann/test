@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>クーポン一覧</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #282c34;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 2px solid #bfa34b;
+      border-radius: 15px;
+      padding: 20px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+      color: #c9c2a5;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      color: #ffd700;
+      margin-bottom: 20px;
+    }
+
+    .coupon {
+      background-color: #333;
+      color: #ffd700;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.1em;
+      transition: background-color 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .coupon:hover {
+      background-color: #4b3b24;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>クーポン一覧</h1>
+    <div class="coupon" onclick="goToCouponDetail('5%OFF Test Coupon 1')">
+      <span>5% OFF クーポン (テスト用 1)</span>
+      <span>&gt;</span>
+    </div>
+    <div class="coupon" onclick="goToCouponDetail('5%OFF Test Coupon 2')">
+      <span>5% OFF クーポン (テスト用 2)</span>
+      <span>&gt;</span>
+    </div>
+  </div>
+
+  <script>
+    function goToCouponDetail(couponName) {
+      alert(couponName + "の詳細画面に移動します");
+      // ここで詳細画面へのリンクを指定します
+      // 例: window.location.href = "coupon_detail.html";
+    }
+  </script>
+</body>
+</html>
