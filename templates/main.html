@@ -14,18 +14,19 @@
     body {
       font-family: 'Georgia', serif;
       background: #282c34;
-      color: #fff;
+      color: #f5f5f5;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
+      padding-top: 60px;
     }
 
     /* ハンバーガーメニュー */
     .menu-toggle {
       position: fixed;
-      top: 20px;
-      left: 20px;
+      top: 10px;
+      left: 10px;
       font-size: 1.5em;
       cursor: pointer;
       z-index: 1000;
@@ -50,7 +51,6 @@
       font-size: 1.1em;
       text-decoration: none;
       border-bottom: 1px solid #444;
-      transition: background-color 0.3s;
     }
 
     .side-menu a:hover {
@@ -63,8 +63,6 @@
 
     /* クエスト一覧 */
     .content {
-      margin-top: 60px;
-      padding: 20px;
       width: 90%;
       max-width: 600px;
     }
@@ -76,26 +74,34 @@
       text-align: center;
     }
 
-    .quest-list {
-      list-style: none;
-      padding: 0;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-    }
-
-    .quest-list li {
+    .prefecture {
       background-color: #333;
-      padding: 10px;
-      border-radius: 5px;
-      text-align: center;
-      color: #ffd700;
-      cursor: pointer;
-      transition: background-color 0.3s;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+      border-left: 5px solid #ffd700;
     }
 
-    .quest-list li:hover {
-      background-color: #555;
+    .prefecture h2 {
+      font-size: 1.3em;
+      color: #ffd700;
+      margin-bottom: 5px;
+    }
+
+    .quest-link {
+      display: block;
+      padding: 8px 0;
+      font-size: 0.95em;
+      color: #f5f5f5;
+      text-decoration: none;
+      border-bottom: 1px dashed #666;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .quest-link:hover {
+      color: #ffd700;
     }
   </style>
 </head>
@@ -115,55 +121,32 @@
   <!-- メインコンテンツ -->
   <div class="content">
     <h1>クエスト一覧</h1>
-    <ul class="quest-list">
-      <li>北海道</li>
-      <li>青森県</li>
-      <li>岩手県</li>
-      <li>宮城県</li>
-      <li>秋田県</li>
-      <li>山形県</li>
-      <li>福島県</li>
-      <li>茨城県</li>
-      <li>栃木県</li>
-      <li>群馬県</li>
-      <li>埼玉県</li>
-      <li>千葉県</li>
-      <li>東京都</li>
-      <li>神奈川県</li>
-      <li>新潟県</li>
-      <li>富山県</li>
-      <li>石川県</li>
-      <li>福井県</li>
-      <li>山梨県</li>
-      <li>長野県</li>
-      <li>岐阜県</li>
-      <li>静岡県</li>
-      <li>愛知県</li>
-      <li>三重県</li>
-      <li>滋賀県</li>
-      <li>京都府</li>
-      <li>大阪府</li>
-      <li>兵庫県</li>
-      <li>奈良県</li>
-      <li>和歌山県</li>
-      <li>鳥取県</li>
-      <li>島根県</li>
-      <li>岡山県</li>
-      <li>広島県</li>
-      <li>山口県</li>
-      <li>徳島県</li>
-      <li>香川県</li>
-      <li>愛媛県</li>
-      <li>高知県</li>
-      <li>福岡県</li>
-      <li>佐賀県</li>
-      <li>長崎県</li>
-      <li>熊本県</li>
-      <li>大分県</li>
-      <li>宮崎県</li>
-      <li>鹿児島県</li>
-      <li>沖縄県</li>
-    </ul>
+    <div class="prefecture">
+      <h2>北海道</h2>
+      <a class="quest-link" href="#">雪山を登ろう！</a>
+      <a class="quest-link" href="#">函館で名所めぐり</a>
+    </div>
+    <div class="prefecture">
+      <h2>青森県</h2>
+      <a class="quest-link" href="#">ねぶた祭りを体験</a>
+      <a class="quest-link" href="#">津軽海峡を渡る</a>
+    </div>
+    <div class="prefecture">
+      <h2>岩手県</h2>
+      <a class="quest-link" href="#">岩手山に登ろう！</a>
+      <a class="quest-link" href="#">盛岡で冷麺を堪能</a>
+    </div>
+    <div class="prefecture">
+      <h2>東京都</h2>
+      <a class="quest-link" href="#">東京タワーに登ろう</a>
+      <a class="quest-link" href="#">上野動物園訪問</a>
+    </div>
+    <div class="prefecture">
+      <h2>神奈川県</h2>
+      <a class="quest-link" href="#">鎌倉の大仏拝観</a>
+      <a class="quest-link" href="#">江の島へ日帰り旅</a>
+    </div>
+    <!-- 他の都道府県を追加 -->
   </div>
 
   <script>

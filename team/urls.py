@@ -10,6 +10,9 @@ urlpatterns = [path('login/', views.loginworldfunction),
                path('coupon/', views.couponformworldfunction),
                path('couponuse/', views.couponuseformworldfunction),
                path('couponend/', views.couponendformworldfunction),
+               path('couponpast/', views.couponpastformworldfunction),
+               path('tittle/', views.tittleformworldfunction),
+               path('questlook/', views.questlookformworldfunction),
                
                
                ]
