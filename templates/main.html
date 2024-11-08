@@ -20,51 +20,40 @@
       align-items: center;
       min-height: 100vh;
       padding-top: 60px;
+      padding-bottom: 60px;
     }
 
-    /* ハンバーガーメニュー */
-    .menu-toggle {
+    /* ナビゲーションバー */
+    .nav-bar {
       position: fixed;
-      top: 10px;
-      left: 10px;
-      font-size: 1.5em;
-      cursor: pointer;
-      z-index: 1000;
-      color: #ffd700;
-    }
-
-    .side-menu {
-      position: fixed;
-      left: -250px;
-      top: 0;
-      width: 250px;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
-      padding-top: 60px;
-      transition: left 0.3s;
-    }
-
-    .side-menu a {
-      display: block;
-      padding: 15px 20px;
-      color: #ffd700;
-      font-size: 1.1em;
-      text-decoration: none;
-      border-bottom: 1px solid #444;
-    }
-
-    .side-menu a:hover {
-      background-color: #444;
-    }
-
-    .side-menu.active {
+      bottom: 0;
       left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-bar a {
+      color: #ffd700;
+      font-size: 1em;
+      text-decoration: none;
+      text-align: center;
+      flex: 1;
+      padding: 10px;
+    }
+
+    .nav-bar a:hover {
+      background-color: #444;
     }
 
     /* クエスト一覧 */
     .content {
       width: 90%;
       max-width: 600px;
+      margin-top: 20px;
     }
 
     h1 {
@@ -106,17 +95,6 @@
   </style>
 </head>
 <body>
-  <!-- ハンバーガーメニューのトグルボタン -->
-  <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
-
-  <!-- サイドメニュー -->
-  <nav class="side-menu" id="sideMenu">
-    <a href="#">アカウント情報</a>
-    <a href="#">クエスト一覧</a>
-    <a href="#">クーポン一覧</a>
-    <a href="#">進行中クエスト</a>
-    <a href="#">ログアウト</a>
-  </nav>
 
   <!-- メインコンテンツ -->
   <div class="content">
@@ -143,17 +121,37 @@
     </div>
     <div class="prefecture">
       <h2>神奈川県</h2>
-      <a class="quest-link" href="#">鎌倉の大仏拝観</a>
+      <a class="quest-link" href="questlook.html">[テスト]鎌倉の大仏拝観</a>
       <a class="quest-link" href="#">江の島へ日帰り旅</a>
     </div>
-    <!-- 他の都道府県を追加 -->
   </div>
 
+  <!-- ナビゲーションバー -->
+  <nav class="nav-bar" id="navBar"></nav>
+
   <script>
-    function toggleMenu() {
-      const sideMenu = document.getElementById("sideMenu");
-      sideMenu.classList.toggle("active");
+    // ログイン状態を示す変数（仮の例としてfalse）
+    const isLoggedIn = false;
+
+    const navBar = document.getElementById("navBar");
+
+    if (isLoggedIn) {
+      // ログイン済みの場合のナビゲーションバー
+      navBar.innerHTML = `
+        <a href="#">アカウント情報</a>
+        <a href="#">クエスト一覧</a>
+        <a href="#">クーポン一覧</a>
+        <a href="#">進行中クエスト</a>
+        <a href="#">ログアウト</a>
+      `;
+    } else {
+      // 未ログイン時のナビゲーションバー
+      navBar.innerHTML = `
+        <a href="#">クエスト依頼</a>
+        <a href="#">新規アカウント登録</a>
+      `;
     }
   </script>
+
 </body>
 </html>

@@ -14,6 +14,9 @@ def accountworldfunction(request):
 def logoutworldfunction(request):
           return render(request, 'logout.html')
 
+def logoutokworldfunction(request):
+          return render(request, 'logoutok.html')
+
 def formworldfunction(request):
           return render(request, 'form.html')
 
@@ -37,4 +40,13 @@ def tittleformworldfunction(request):
 
 def questlookformworldfunction(request):
           return render(request, 'questlook.html')
+
+def couponnotformworldfunction(request):
+          return render(request, 'couponnot.html')
+
+def questokformworldfunction(request):
+          return render(request, 'questok.html')
+
+def questerformworldfunction(request):
+          return render(request, 'quester.html')
 

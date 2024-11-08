@@ -95,6 +95,13 @@
     .back-btn:hover {
       background-color: #555;
     }
+
+    /* 変更メッセージのスタイル */
+    .message {
+      margin-top: 15px;
+      font-size: 1em;
+      color: #ffd700;
+    }
   </style>
 </head>
 <body>
@@ -121,17 +128,22 @@
       <button class="change-btn" onclick="changeInfo('password')">変更</button>
     </div>
     <a href="#" class="back-btn" onclick="goBack()">戻る</a>
+    
+    <!-- メッセージ表示用の要素 -->
+    <p id="message" class="message"></p>
   </div>
 
   <script>
     function changeInfo(field) {
       const inputField = document.getElementById(field);
+      const message = document.getElementById("message");
+
       if (inputField.readOnly) {
         inputField.readOnly = false;
         inputField.focus();
       } else {
         inputField.readOnly = true;
-        alert(field + 'が更新されました！');
+        message.textContent = field + 'が更新されました！';
       }
     }
 

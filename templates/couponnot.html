@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用済みクーポン</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #282c34;
+      color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 2px solid #bfa34b;
+      border-radius: 15px;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      font-size: 1.8em;
+      color: #ffd700;
+      margin-bottom: 20px;
+    }
+
+    .coupon-item {
+      background-color: #333;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+      border-left: 5px solid #ffd700;
+    }
+
+    .no-history {
+      font-size: 1.1em;
+      color: #ccc;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>使用済みクーポン</h1>
+    <div id="couponList"></div>
+  </div>
+
+  <script>
+    // 使用済みクーポンのリスト（例: 空配列の場合）
+    const usedCoupons = [];
+
+    const couponList = document.getElementById("couponList");
+
+    if (usedCoupons.length === 0) {
+      // クーポンがない場合に「履歴はありません」を表示
+      couponList.innerHTML = `<p class="no-history">履歴はありません</p>`;
+    } else {
+      // 使用済みクーポンをリスト表示
+      usedCoupons.forEach(coupon => {
+        const couponItem = document.createElement("div");
+        couponItem.className = "coupon-item";
+        couponItem.textContent = coupon;
+        couponList.appendChild(couponItem);
+      });
+    }
+  </script>
+</body>
+</html>
