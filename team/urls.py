@@ -1,8 +1,10 @@
 from django.urls import path
 from . import views
 
+app_name = 'team'
+
 urlpatterns = [path('login/', views.loginworldfunction),
-               path('main/', views.mainworldfunction),
+               path('main/', views.mainworldfunction, name="main"),
                path('account/', views.accountworldfunction),
                path('logout/', views.logoutworldfunction),
                path('logoutok/', views.logoutokworldfunction),
