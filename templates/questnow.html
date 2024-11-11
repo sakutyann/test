@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>進行中クエスト一覧</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #282c34;
+      color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+
+    .content {
+      width: 90%;
+      max-width: 600px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #ffd700;
+      margin-bottom: 20px;
+    }
+
+    .quest-item {
+      background-color: #333;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+      border-left: 5px solid #ffd700;
+      text-align: left;
+      transition: background-color 0.3s;
+    }
+
+    .quest-item:hover {
+      background-color: #444;
+    }
+
+    .quest-link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .quest-item h2 {
+      font-size: 1.3em;
+      color: #ffd700;
+      margin-bottom: 8px;
+    }
+
+    .quest-status {
+      font-size: 0.95em;
+      color: #c9c2a5;
+    }
+
+    .progress {
+      margin-top: 10px;
+      background-color: #555;
+      border-radius: 5px;
+      height: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background-color: #ffd700;
+      width: 0%;
+      transition: width 0.3s;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- メインコンテンツ -->
+  <div class="content">
+    <h1>進行中のクエスト一覧</h1>
+    
+    <a href="quest_detail_tower.html" class="quest-link">
+      <div class="quest-item">
+        <h2>東京タワーを訪れる</h2>
+        <p class="quest-status">進捗状況: 2/5</p>
+        <div class="progress">
+          <div class="progress-bar" style="width: 40%;"></div>
+        </div>
+      </div>
+    </a>
+    
+    <a href="quest_detail_fuji.html" class="quest-link">
+      <div class="quest-item">
+        <h2>富士山に登る</h2>
+        <p class="quest-status">進捗状況: 3/10</p>
+        <div class="progress">
+          <div class="progress-bar" style="width: 30%;"></div>
+        </div>
+      </div>
+    </a>
+    
+    <a href="quest_detail_nara.html" class="quest-link">
+      <div class="quest-item">
+        <h2>奈良の鹿と触れ合う</h2>
+        <p class="quest-status">進捗状況: 5/7</p>
+        <div class="progress">
+          <div class="progress-bar" style="width: 71.43%;"></div>
+        </div>
+      </div>
+    </a>
+
+    <a href="quest_detail_kyoto.html" class="quest-link">
+      <div class="quest-item">
+        <h2>京都で寺院巡り</h2>
+        <p class="quest-status">進捗状況: 1/8</p>
+        <div class="progress">
+          <div class="progress-bar" style="width: 12.5%;"></div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+</body>
+</html>
