@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>クエスト詳細</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #282c34;
+      color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 2px solid #ffd700;
+      border-radius: 15px;
+      padding: 20px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      color: #ffd700;
+      margin-bottom: 20px;
+    }
+
+    .quest-details {
+      text-align: left;
+      color: #c9c2a5;
+      margin-bottom: 15px;
+    }
+
+    .quest-details p {
+      margin: 10px 0;
+    }
+
+    .challenge-button {
+      display: inline-block;
+      padding: 12px 20px;
+      font-size: 1.1em;
+      color: #282c34;
+      background-color: #ffd700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .challenge-button:hover {
+      background-color: #f0c040;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>クエスト詳細</h1>
+    <div class="quest-details">
+      <p><strong>タイトル:</strong> 鎌倉の大仏拝観</p>
+      <p><strong>説明:</strong> 鎌倉の有名な大仏を訪れ、写真を撮影して投稿してください。</p>
+      <p><strong>期限:</strong> 2024年12月31日</p>
+      <p><strong>クリア条件:</strong> 大仏と一緒に撮影した写真をアップロードすること。</p>
+    </div>
+    <button class="challenge-button">このクエストに挑戦！！！</button>
+  </div>
+</body>
+</html>

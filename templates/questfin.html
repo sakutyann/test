@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>クーポンゲット！</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #282c34;
+      color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+
+    .content {
+      width: 90%;
+      max-width: 600px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #32cd32;
+      margin-bottom: 20px;
+      animation: fadeIn 1s ease-out;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .description {
+      font-size: 1.1em;
+      color: #c9c2a5;
+      margin-bottom: 20px;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    .coupon-code {
+      font-size: 1.4em;
+      color: #ffd700;
+      margin-top: 20px;
+      background-color: #333;
+      padding: 10px 20px;
+      border-radius: 5px;
+      display: inline-block;
+      animation: slideIn 1s ease-out;
+    }
+
+    @keyframes slideIn {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(0); }
+    }
+
+    .cta-button {
+      background-color: #4b3b24;
+      color: #ffd700;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s;
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    .cta-button:hover {
+      background-color: #6d5630;
+    }
+
+    .quest-progress {
+      font-size: 1.1em;
+      color: #ff6347;
+      margin-top: 30px;
+      animation: fadeIn 2s ease-out;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+    <!-- クエストクリアメッセージ -->
+    <h1>クエストクリア！</h1>
+
+  
+
+    <!-- クーポン獲得の説明 -->
+    <p class="description">素晴らしい成果！新しいクーポンをゲットしました。クーポンコードを使って、次回のお買い物で割引を受けましょう。</p>
+
+    <!-- クーポンコード -->
+    <p class="coupon-code">クーポンコード: WIN2024</p>
+
+    <!-- 詳細ボタン -->
+    <button class="cta-button" onclick="window.location.href='coupon_details_page'">クーポンの詳細を見る</button>
+  </div>
+
+</body>
+</html>
+
+
