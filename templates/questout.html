@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>クエスト失敗 - 写真アップロード</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #282c34;
+      color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+
+    .content {
+      width: 90%;
+      max-width: 600px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #ff6347;
+      margin-bottom: 10px;
+      animation: fadeIn 1s ease-out;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .description {
+      font-size: 1.1em;
+      color: #c9c2a5;
+      margin-bottom: 20px;
+    }
+
+    .failure-message {
+      font-size: 1.2em;
+      color: #ff6347;
+      margin-top: 20px;
+      animation: shake 0.5s ease-in-out;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+
+    .sample-photo {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    form {
+      background-color: #333;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    label {
+      display: block;
+      font-size: 1em;
+      color: #ffd700;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      background-color: #444;
+      color: #f5f5f5;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #4b3b24;
+      color: #ffd700;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #6d5630;
+    }
+
+    .retry-button {
+      background-color: #ff6347;
+    }
+
+    .retry-button:hover {
+      background-color: #ff4500;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+    <!-- クエスト失敗メッセージ -->
+    <h1>クエスト失敗</h1>
+
+    <!-- クエスト詳細と魅力の説明 -->
+    <p class="description">もう一度挑戦して、素晴らしい写真を撮影しましょう！焦らず、気を取り直して再挑戦です。</p>
+
+    
+
+    <!-- 失敗メッセージ -->
+    <p class="failure-message">もう一度やり直しましょう！</p>
+
+    <!-- リトライフォーム -->
+    <form action="upload_endpoint" method="post" enctype="multipart/form-data">
+      <label for="photo">新しい写真をアップロードしてください:</label>
+      <input type="file" id="photo" name="photo" accept="image/*" required>
+
+      <button type="submit" class="retry-button">リトライ</button>
+    </form>
+  </div>
+
+</body>
+</html>
