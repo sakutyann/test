@@ -1,13 +1,10 @@
 from django.urls import path
 from . import views
 
-<<<<<<< HEAD
-=======
 app_name = 'team'
->>>>>>> bad7c866ff6de21db0e99333e94c10d3967ae660
 
 urlpatterns = [path('login/', views.loginworldfunction),
-               path('main/', views.mainworldfunction, name="main"),
+               path('main/', views.mainworldfunction,),
                path('account/', views.accountworldfunction),
                path('logout/', views.logoutworldfunction),
                path('logoutok/', views.logoutokworldfunction),

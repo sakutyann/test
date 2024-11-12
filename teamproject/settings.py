@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     #ここから追加
     'team',
     # accountsの追加
-    'accounts.apps.AccountsConfig',
+    #'accounts.apps.AccountsConfig',
     
 ]
 
@@ -131,4 +131,4 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Userモデルの代わりにCustomuserモデルを使用
-AUTH_USER_MODEL = 'accounts.CustomUser'
+#AUTH_USER_MODEL = 'accounts.CustomUser'

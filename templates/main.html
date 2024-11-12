@@ -213,6 +213,13 @@
   <nav class="nav-bar" id="navBar"></nav>
 
   <script>
+    // URLパラメータを取得して、新規登録後のメッセージ表示
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("newRegistration") === "true") {
+      document.getElementById("successMessage").style.display = "block";
+    }
+
+    // ナビゲーションバーの表示処理
     const isLoggedIn = true;
     const navBar = document.getElementById("navBar");
     if (isLoggedIn) {
@@ -230,6 +237,7 @@
       `;
     }
   </script>
+
 
 </body>
 </html>
