@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>新規アカウント登録完了</title>
+  <title>ログアウト確認</title>
   <style>
     * {
       margin: 0;
@@ -19,7 +19,6 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      flex-direction: column;
     }
 
     .container {
@@ -45,6 +44,12 @@
       margin-bottom: 20px;
     }
 
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
     .button {
       background-color: #4b3b24;
       color: #ffd700;
@@ -54,8 +59,6 @@
       cursor: pointer;
       font-size: 1em;
       transition: background-color 0.3s;
-      text-decoration: none;
-      display: inline-block;
     }
 
     .button:hover {
@@ -65,23 +68,28 @@
 </head>
 
 
-
-
 <body>
   <div class="container">
-    <h1>アカウント登録完了</h1>
+    <h1>ログアウト確認</h1>
+    <p class="message">ログアウトしますか？</p>
+    
+    <!-- ユーザー情報表示 -->
+    <p>{{ user_info }}</p>
 
-    <!-- ログイン状態の確認 -->
-    {% if user.is_authenticated %}
-        <p class="message">ログイン中: {{ user.username }} さん</p>
-    {% else %}
-        <p class="message">ログインしていません</p>
-    {% endif %}
-
-
-    <p class="message">新規アカウントの登録が完了しました。</p>
-    <p class="message">ご登録いただいた<strong>ID</strong>と<strong>パスワード</strong>は、大切に保管し、忘れないようにご注意ください。</p>
-    <a href="{% url 'accounts:test' %}" class="button">クエスト一覧へ</a>
+    <div class="button-group">
+      <!-- フォームでログアウト処理を実行 -->
+      <form action="{% url 'accounts:logout_ok' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="button">はい</button>
+      </form>
+      <button class="button" onclick="cancelLogout()">いいえ</button>
+    </div>
   </div>
+
+  <script>
+    function cancelLogout() {
+      window.history.back(); // 前の画面に戻る
+    }
+  </script>
 </body>
 </html>
