@@ -76,23 +76,62 @@
     .used-coupons-btn:hover {
       background-color: #6d5630;
     }
+
+    .no-coupons {
+      color: #ffd700;
+      font-size: 1.2em;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
+
   <div class="container">
     <h1>クーポン一覧</h1>
-    <div class="coupon" onclick="goToCouponDetail('5%OFF Test Coupon 1')">
-      <span>5% OFF クーポン (テスト用 1)</span>
-      <span>&gt;</span>
-    </div>
-    <div class="coupon" onclick="goToCouponDetail('5%OFF Test Coupon 2')">
-      <span>5% OFF クーポン (テスト用 2)</span>
-      <span>&gt;</span>
-    </div>
+
+    <div id="couponList"></div>  <!-- クーポンリストをここに追加 -->
+
   </div>
 
   <button class="used-coupons-btn" onclick="goToUsedCoupons()">使用済みクーポン</button>
 
+  <script>
+    // クーポンのデータ
+    const coupons = [
+      //{ name: '5% OFF クーポン (テスト用 1)', id: '5%OFF Test Coupon 1' },
+      //{ name: '5% OFF クーポン (テスト用 2)', id: '5%OFF Test Coupon 2' },
+      // クーポンがない場合は空配列にする
+    ];
+
+    const couponList = document.getElementById('couponList');
+
+    // クーポンがある場合、リストを作成、ない場合はメッセージ表示
+    if (coupons.length > 0) {
+      coupons.forEach(coupon => {
+        const couponDiv = document.createElement('div');
+        couponDiv.classList.add('coupon');
+        couponDiv.setAttribute('onclick', `goToCouponDetail('${coupon.id}')`);
+        couponDiv.innerHTML = `
+          <span>${coupon.name}</span>
+          <span>&gt;</span>
+        `;
+        couponList.appendChild(couponDiv);
+      });
+    } else {
+      couponList.innerHTML = `<p class="no-coupons">クーポンはありません</p>`;
+    }
+
+    function goToCouponDetail(couponId) {
+      // クーポン詳細画面へ遷移
+      alert(`クーポン詳細: ${couponId}`);
+    }
+
+    function goToUsedCoupons() {
+      // 使用済みクーポンのページへ遷移
+      alert('使用済みクーポンページへ');
+    }
+  </script>
 
 </body>
 </html>
+

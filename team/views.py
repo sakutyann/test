@@ -1,7 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
-
 def loginworldfunction(request):
           return render(request, 'login.html')
 
