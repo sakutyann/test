@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     #ここから追加
     'team',
     # accountsの追加
-    #'accounts.apps.AccountsConfig',
+    'accounts.apps.AccountsConfig',
     
 ]
 
