@@ -1,89 +1,114 @@
-
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, TemplateView
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import CustomUserCreationForm
 from django.urls import reverse_lazy
 
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login
-
+from django.views import View
+from django.contrib.auth import login, logout
 import logging
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
 logger = logging.getLogger(__name__)
 
 class SignUpView(CreateView):
-    """サインアップページのビュー
-    """
-
-# forms.pyで定義したフォームのクラス
+    """サインアップページのビュー"""
     form_class = CustomUserCreationForm
-    # レンダリングするテンプレート
     template_name = "signup.html"
-    # サインアップ完了後のリダイレクト先のURLパターン
-    success_url = reverse_lazy('accounts:signup_success')
-    def form_valid(self, form):
-        
-        """「CreateViewクラスのform_valid()をオーバーライド
-
-        フォームのバリデーションを通過したときに呼ばれる
-        フォームデータの登録を行う
-        
-        paramenters:
-            form(django.forms.Form):
-            form classに格納されているCustomUserCreationFormオブジェクト
-        Return:
-          HttpResponseRedirect オブジェクト:
-          スーパークラスのform_valid()の戻り値を返すことで、
-          success _urlで設定されているURLにリダイレクトさせる
-        """
-        # formオブジェクトのフィールドの値をデータベースに保存
-        user = form.save ()
-        self.object = user
-        # 戻り値はスーパークラスのform_valid()の戻り値(HttpResponseRedirect)
-        return super().form_valid(form)
-
-class SignUpSuccessView(TemplateView):
-    """サインアップ完了ページのビュー
-    """
-    # レンダリングするテンプレート
-    template_name = "signup_success.html"
-
-
-
-
-# irann
     
+    # サインアップ完了後のリダイレクト先
+    success_url = reverse_lazy('team:main')
+
+    def form_valid(self, form):
+        user = form.save()
+        self.object = user
+        
+        # 新規ユーザーをログインさせる
+        login(self.request, user)
+        
+        # セッションが正しく維持されるように保存
+        self.request.session.modified = True
+        self.request.session.save()
+        
+        logger.info(f"User {user.username} logged in successfully after signup.")
+        
+        # return redirect(self.success_url)
+    
+        # ログイン成功をURLパラメータとして渡す
+        return redirect(f'{self.success_url}?loginStatus=success&username={user.username}')
+
+
+
+
+
+
+
 class SignInView(TemplateView):
     """ログインページのビュー"""
     template_name = "signup.html"
-    
+
     def post(self, request, *args, **kwargs):
-        
         logger.info("SignInView post method has been called.")
-        # POSTデータの確認
-        logger.info("POST data: %s", request.POST)
-        print("SignInView post method has been called.")
-        # ログイン処理を行う
         form = AuthenticationForm(request, data=request.POST)
         
         if form.is_valid():
-            
-            # ユーザー認証成功確認
             logger.info("User authenticated successfully.")
-            # ログインさせる
             login(request, form.get_user())
-            # セッションが更新されたか確認するためのログ出力
-            logger.info("Session user: %s", request.user.username)                        
-            # ログイン後のリダイレクトを設定
-            return redirect('team:main') #ログイン後の画面
+            logger.info("Session user: %s", request.user.username)
+            
+            
+            # return redirect('team:main')  # ログイン後の画面
+        
+            # ログイン成功をURLパラメータとして渡す
+            return redirect(f'/main?loginStatus=success&username={form.get_user().username}')
         
         else:
-            # エラーメッセージ
             logger.warning("Authentication failed with errors: %s", form.errors)
             return render(request, self.template_name, {'login_form': form})
 
 
 
+
+
+
+# アカウント情報閲覧
+@method_decorator(login_required, name='dispatch')
+class AccountInfoView(View):
+    """ユーザーのアカウント情報を表示するビュー"""
+
+    def get(self, request):
+        """GETリクエストでユーザー名とメールアドレスを表示"""
+        return render(request, 'account_info.html', {
+            'username': request.user.username,
+            'email': request.user.email
+        })
+
+
+
+
+
+
+# メインページのビュー
+def main_view(request):
+    return render(request, 'main.html')
+
+
+
+
+@login_required
+def logout_view(request):
+    user_info = f"ログイン中: {request.user.username}" if request.user.is_authenticated else "ログインしていません"
+    return render(request, 'logout_check.html', {'user_info': user_info})
+
+def logoutok_view(request):
+    logout(request)
+    user_info = "正常にログアウトされました"
+    return render(request, 'logout_ok.html', {'user_info': user_info})
+
+
+  
+        
 # test
 def test(request):
     if request.user.is_authenticated:
@@ -92,3 +117,4 @@ def test(request):
         user_info = "Not logged in"
     
     return render(request, 'test.html', {'user_info': user_info})
+

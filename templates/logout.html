@@ -13,7 +13,7 @@
 
     body {
       font-family: 'Georgia', serif;
-      background: #282c34;
+      background: #2b2b2b;
       color: #fff;
       display: flex;
       justify-content: center;
@@ -22,26 +22,28 @@
     }
 
     .container {
-      background-color: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.8);
       border: 2px solid #bfa34b;
       border-radius: 15px;
-      padding: 30px;
+      padding: 40px;
       width: 90%;
       max-width: 400px;
       text-align: center;
-      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
     }
 
     h1 {
-      font-size: 1.8em;
+      font-size: 2em;
       color: #ffd700;
       margin-bottom: 20px;
+      text-shadow: 0px 0px 10px rgba(255, 223, 0, 0.8);
+      font-weight: bold;
     }
 
     .message {
-      font-size: 1.1em;
+      font-size: 1.2em;
       color: #c9c2a5;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
 
     .button-group {
@@ -51,18 +53,22 @@
     }
 
     .button {
-      background-color: #4b3b24;
+      background: linear-gradient(145deg, #6d5630, #4b3b24);
       color: #ffd700;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
+      padding: 12px 25px;
+      border: 1px solid #a67f41;
+      border-radius: 8px;
+      font-size: 1.1em;
+      font-weight: bold;
       cursor: pointer;
-      font-size: 1em;
-      transition: background-color 0.3s;
+      transition: transform 0.3s, background-color 0.3s;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
     }
 
     .button:hover {
-      background-color: #6d5630;
+      background-color: #a67f41;
+      transform: translateY(-3px);
+      box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.6);
     }
   </style>
 </head>
@@ -76,16 +82,5 @@
     </div>
   </div>
 
-  <script>
-    function confirmLogout() {
-      alert("ログアウトしました");
-      // 実際のログアウト処理にリダイレクトまたは処理を追加
-      window.location.href = "login.html"; // ログイン画面へのリダイレクト例
-    }
-
-    function cancelLogout() {
-      window.history.back(); // 前の画面に戻る
-    }
-  </script>
 </body>
 </html>

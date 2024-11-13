@@ -34,6 +34,7 @@
       font-size: 2em;
       color: #ffd700;
       margin-bottom: 20px;
+      text-transform: uppercase;
     }
 
     .description {
@@ -73,6 +74,44 @@
       font-size: 0.9em;
       color: #f5f5f5;
     }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    .button {
+      padding: 10px 20px;
+      background-color: #ffd700;
+      color: #282c34;
+      text-decoration: none;
+      font-size: 1.1em;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+      margin-bottom: 15px;
+    }
+
+    .button:hover {
+      background-color: #f0c040;
+    }
+
+    .back-button {
+      background-color: #f0c040;
+    }
+
+    .back-button:hover {
+      background-color: #ffd700;
+    }
+
+    .complete-button {
+      background-color: #f0c040;
+    }
+
+    .complete-button:hover {
+      background-color: #ffd700;
+    }
   </style>
 </head>
 <body>
@@ -80,63 +119,34 @@
   <!-- メインコンテンツ -->
   <div class="content">
     <h1>クエスト詳細</h1>
-    <p class="description">京都の名所で8枚の写真を撮ってアップロードしましょう！</p>
+    <p class="description">京都の名所で3枚の写真を撮ってアップロードしましょう！</p>
 
-    <a href="upload.html" class="photo-link">
+    <a href="#" class="photo-link">
       <div class="photo-item">
         <h2>1. 清水寺の写真を撮影</h2>
         <p>清水の舞台からの眺めを撮影してください。</p>
       </div>
     </a>
 
-    <a href="upload.html" class="photo-link">
+    <a href="#" class="photo-link">
       <div class="photo-item">
         <h2>2. 金閣寺の写真を撮影</h2>
         <p>黄金に輝く金閣寺を撮影してください。</p>
       </div>
     </a>
 
-    <a href="upload.html" class="photo-link">
+    <a href="#" class="photo-link">
       <div class="photo-item">
-        <h2>3. 銀閣寺の写真を撮影</h2>
-        <p>静かな庭園と銀閣を撮影してください。</p>
-      </div>
-    </a>
-
-    <a href="upload.html" class="photo-link">
-      <div class="photo-item">
-        <h2>4. 伏見稲荷大社の鳥居</h2>
+        <h2>3. 伏見稲荷大社の鳥居</h2>
         <p>千本鳥居の中で好きな場所を撮影してください。</p>
       </div>
     </a>
 
-    <a href="upload.html" class="photo-link">
-      <div class="photo-item">
-        <h2>5. 嵐山の竹林</h2>
-        <p>風にそよぐ竹林の道を撮影してください。</p>
-      </div>
-    </a>
-
-    <a href="upload.html" class="photo-link">
-      <div class="photo-item">
-        <h2>6. 南禅寺の水路閣</h2>
-        <p>レンガ造りの水路閣を撮影してください。</p>
-      </div>
-    </a>
-
-    <a href="upload.html" class="photo-link">
-      <div class="photo-item">
-        <h2>7. 鴨川沿いの風景</h2>
-        <p>鴨川沿いの風景や街並みを撮影してください。</p>
-      </div>
-    </a>
-
-    <a href="upload.html" class="photo-link">
-      <div class="photo-item">
-        <h2>8. 京都御所の庭園</h2>
-        <p>歴史ある京都御所の庭園を撮影してください。</p>
-      </div>
-    </a>
+    <!-- 完了ボタンと戻るボタン -->
+    <div class="buttons">
+      <a href="#" class="button complete-button">完了</a>
+      <a href="#" class="button back-button">戻る</a>
+    </div>
   </div>
 
 </body>
