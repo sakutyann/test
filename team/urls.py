@@ -3,13 +3,17 @@ from . import views
 
 app_name = 'team'
 
+
 urlpatterns = [path('login/', views.loginworldfunction),
                path('main/', views.mainworldfunction, name="main"),
                path('account/', views.accountworldfunction),
                path('logout/', views.logoutworldfunction),
                path('logoutok/', views.logoutokworldfunction),
-               path('form/', views.formworldfunction),
-               path('quest/', views.questformworldfunction),
+               #クエスト依頼フォーム
+               path('form/', views.formworldfunction,name='form'),
+               #お題登録フォーム
+               path('questform/', views.questformworldfunction,name='questform'),
+               
                path('coupon/', views.couponformworldfunction),
                path('couponuse/', views.couponuseformworldfunction),
                path('couponend/', views.couponendformworldfunction),
