@@ -1,14 +1,24 @@
 from django.urls import path
 from . import views
+from .views import MainView
+
+
+
+app_name = 'team'
+
 
 urlpatterns = [path('login/', views.loginworldfunction),
-               path('main/', views.mainworldfunction),
+              #  main
+               path('main/', MainView.as_view(), name="main"),
                path('account/', views.accountworldfunction),
                path('logout/', views.logoutworldfunction),
                path('logoutok/', views.logoutokworldfunction),
-               path('form/', views.formworldfunction),
-               path('quest/', views.questformworldfunction),
-               path('coupon/', views.couponformworldfunction),
+               #クエスト依頼フォーム
+               path('form/', views.formworldfunction,name='form'),
+               #お題登録フォーム
+               path('questform/', views.questformworldfunction,name='questform'),
+               
+               path('coupon/', views.couponformworldfunction, name='coupon'),
                path('couponuse/', views.couponuseformworldfunction),
                path('couponend/', views.couponendformworldfunction),
                path('couponpast/', views.couponpastformworldfunction),
@@ -18,7 +28,8 @@ urlpatterns = [path('login/', views.loginworldfunction),
                path('questok/', views.questokformworldfunction),
                path('quester/', views.questerformworldfunction),
                path('newaccount/', views.newaccountformworldfunction),
-               path('questnow/', views.questnowformworldfunction),
+              #  進行中クエスト
+               path('questnow/', views.questnowformworldfunction, name='questnow'),
                path('questnot/', views.questnotformworldfunction),
                path('questdo/', views.questdoformworldfunction),
                path('questgo/', views.questgoformworldfunction),

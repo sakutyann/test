@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     
     #ここから追加
     'team',
+    # accountsの追加
+    'accounts.apps.AccountsConfig',
     
 ]
 
@@ -80,8 +82,12 @@ WSGI_APPLICATION = 'teamproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',  # MySQLを使用
+        'NAME': 'teamproject',  # 作成したデータベース名
+        'USER': 'root',  # MySQLのユーザー名（デフォルトはroot）
+        'PASSWORD': 'Djangodayo1414+',  # MySQLのパスワード
+        'HOST': '127.0.0.1',  # ローカルホスト（ローカルMySQLに接続）
+        'PORT': '3306',  # MySQLのポート（通常は3306）
     }
 }
 
@@ -128,3 +134,8 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Userモデルの代わりにCustomuserモデルを使用
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# ログインが必要なページへアクセスした際のリダイレクト先
+LOGIN_URL = 'accounts:main'  

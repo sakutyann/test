@@ -13,7 +13,8 @@
 
     body {
       font-family: 'Georgia', serif;
-      background: #282c34;
+      background: #1b1f2a url('https://www.example.com/background.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: #f5f5f5;
       display: flex;
       flex-direction: column;
@@ -21,9 +22,97 @@
       min-height: 100vh;
       padding-top: 60px;
       padding-bottom: 60px;
+      overflow-x: hidden;
     }
 
-    /* ナビゲーションバー */
+    /* メインコンテンツ */
+    .content {
+      width: 90%;
+      max-width: 800px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.6);
+      margin-top: 20px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #ffd700;
+      text-align: center;
+      margin-bottom: 30px;
+      text-shadow: 0px 0px 10px rgba(255, 215, 0, 0.8);
+    }
+
+    /* 地域のセクション */
+    .region {
+      margin-bottom: 30px;
+    }
+
+    .region h2 {
+      font-size: 1.8em;
+      color: #f0e68c;
+      background: linear-gradient(135deg, #1e90ff, #00bfff);
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .region h2:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+
+    /* 都道府県のカード */
+    .prefecture {
+      background: linear-gradient(135deg, #333, #444);
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+      border-left: 5px solid #00bfff;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .prefecture:hover {
+      transform: scale(1.03);
+      background: linear-gradient(135deg, #444, #555);
+    }
+
+    .prefecture h3 {
+      font-size: 1.4em;
+      color: #ffd700;
+      margin-bottom: 5px;
+      text-shadow: 0px 0px 5px rgba(255, 215, 0, 0.7);
+    }
+
+    .quest-link {
+      display: block;
+      padding: 8px 0;
+      font-size: 1em;
+      color: #f5f5f5;
+      text-decoration: none;
+      border-bottom: 1px dashed #888;
+      cursor: pointer;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .quest-link:hover {
+      color: #ffd700;
+      transform: scale(1.05);
+    }
+
+    .no-quest {
+      font-size: 1em;
+      color: #aaa;
+      padding: 8px 0;
+      font-style: italic;
+    }
+
+    {% comment %} /* ナビゲーションバー */
     .nav-bar {
       position: fixed;
       bottom: 0;
@@ -32,66 +121,91 @@
       background-color: rgba(0, 0, 0, 0.9);
       display: flex;
       justify-content: space-around;
-      padding: 10px 0;
-      box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.3);
-    }
+      padding: 15px 0;
+      box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.4);
+    } {% endcomment %}
 
     .nav-bar a {
       color: #ffd700;
-      font-size: 1em;
+      font-size: 1.2em;
       text-decoration: none;
       text-align: center;
       flex: 1;
       padding: 10px;
+      transition: background-color 0.3s, transform 0.3s;
+      border-radius: 5px;
     }
 
     .nav-bar a:hover {
       background-color: #444;
+      transform: scale(1.1);
     }
 
-    /* クエスト一覧 */
-    .content {
-      width: 90%;
-      max-width: 600px;
-      margin-top: 20px;
-    }
-
-    h1 {
-      font-size: 2em;
-      color: #ffd700;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .prefecture {
-      background-color: #333;
-      padding: 15px;
-      margin-bottom: 10px;
+    /* ポップアップのスタイル */
+    dialog {
+      position: fixed;
+      top: 40%;  /* 画面上部からの位置 */
+      left: 50%;
+      transform: translateX(-50%);  /* 中央に配置 */
+      border: none;
       border-radius: 8px;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
-      border-left: 5px solid #ffd700;
-    }
-
-    .prefecture h2 {
-      font-size: 1.3em;
-      color: #ffd700;
-      margin-bottom: 5px;
-    }
-
-    .quest-link {
-      display: block;
-      padding: 8px 0;
-      font-size: 0.95em;
+      padding: 20px;
+      background-color: #333;
       color: #f5f5f5;
-      text-decoration: none;
-      border-bottom: 1px dashed #666;
-      cursor: pointer;
-      transition: color 0.3s;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      z-index: 9999;  /* 他の要素より前面に表示 */
     }
 
-    .quest-link:hover {
-      color: #ffd700;
+    dialog p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
     }
+
+    dialog button {
+      padding: 10px 20px;
+      background-color: #ffd700;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    dialog button:hover {
+      background-color: #ffcc00;
+    }
+    
+    /* ナビゲーションバーのスタイル */
+    .nav-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: space-around;
+      padding: 15px 0;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+      z-index: 10;
+    }
+
+    .nav-bar a {
+      color: #ffd700;
+      font-size: 1.2em;
+      text-decoration: none;
+      text-align: center;
+      flex: 1;
+      padding: 10px;
+      transition: background-color 0.3s, transform 0.3s;
+      border-radius: 5px;
+    }
+
+    .nav-bar a:hover {
+      background-color: #444;
+      transform: scale(1.1);
+    }
+
+
   </style>
 </head>
 <body>
@@ -99,59 +213,131 @@
   <!-- メインコンテンツ -->
   <div class="content">
     <h1>クエスト一覧</h1>
-    <div class="prefecture">
-      <h2>北海道</h2>
-      <a class="quest-link" href="#">雪山を登ろう！</a>
-      <a class="quest-link" href="#">函館で名所めぐり</a>
+    
+    <!-- 地域ごとのクエスト -->
+    <div class="region">
+      <h2>北海道・東北地方</h2>
+      <div class="prefecture">
+        <h3>北海道</h3>
+        <a class="quest-link" href="#">雪山を登ろう！</a>
+        <a class="quest-link" href="#">函館で名所めぐり</a>
+      </div>
+      <div class="prefecture"><h3>青森県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>岩手県</h3><a class="quest-link" href="#">岩手山に登ろう！</a></div>
+      <div class="prefecture"><h3>宮城県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>秋田県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>山形県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>福島県</h3><p class="no-quest">クエストがありません</p></div>
     </div>
-    <div class="prefecture">
-      <h2>青森県</h2>
-      <a class="quest-link" href="#">ねぶた祭りを体験</a>
-      <a class="quest-link" href="#">津軽海峡を渡る</a>
+
+    <div class="region">
+      <h2>関東地方</h2>
+      <div class="prefecture"><h3>東京都</h3><a class="quest-link" href="#">東京タワーに登ろう</a></div>
+      <div class="prefecture"><h3>神奈川県</h3><a class="quest-link" href="#">江の島へ日帰り旅</a></div>
+      <div class="prefecture"><h3>埼玉県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>千葉県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>茨城県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>栃木県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>群馬県</h3><p class="no-quest">クエストがありません</p></div>
     </div>
-    <div class="prefecture">
-      <h2>岩手県</h2>
-      <a class="quest-link" href="#">岩手山に登ろう！</a>
-      <a class="quest-link" href="#">盛岡で冷麺を堪能</a>
+
+    <div class="region">
+      <h2>中部地方</h2>
+      <div class="prefecture"><h3>新潟県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>富山県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>石川県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>福井県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>山梨県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>長野県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>岐阜県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>静岡県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>愛知県</h3><p class="no-quest">クエストがありません</p></div>
     </div>
-    <div class="prefecture">
-      <h2>東京都</h2>
-      <a class="quest-link" href="#">東京タワーに登ろう</a>
-      <a class="quest-link" href="#">上野動物園訪問</a>
+
+    <div class="region">
+      <h2>四国地方</h2>
+      <div class="prefecture"><h3>徳島県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>香川県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>愛媛県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>高知県</h3><p class="no-quest">クエストがありません</p></div>
     </div>
-    <div class="prefecture">
-      <h2>神奈川県</h2>
-      <a class="quest-link" href="questlook.html">[テスト]鎌倉の大仏拝観</a>
-      <a class="quest-link" href="#">江の島へ日帰り旅</a>
+
+    <div class="region">
+      <h2>九州・沖縄地方</h2>
+      <div class="prefecture"><h3>福岡県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>佐賀県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>長崎県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>熊本県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>大分県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>宮崎県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>鹿児島県</h3><p class="no-quest">クエストがありません</p></div>
+      <div class="prefecture"><h3>沖縄県</h3><a class="quest-link" href="#">首里城を訪れる</a></div>
     </div>
   </div>
 
   <!-- ナビゲーションバー -->
-  <nav class="nav-bar" id="navBar"></nav>
+  <nav class="nav-bar" id="navBar">
+    {% if is_authenticated %}
+      <a href="{% url 'accounts:account_info' %}" class="nav-link">アカウント情報</a>
+      <a href="{% url 'team:main' %}" class="nav-link">クエスト一覧</a>
+      <a href="{% url 'team:coupon' %}" class="nav-link">クーポン一覧</a>
+      <a href="{% url 'team:questnow' %}" class="nav-link">進行中クエスト</a>
+      <a href="{% url 'accounts:logout_check' %}" class="nav-link">ログアウト</a>
+    {% else %}
+      <a href="#" class="nav-link">クエスト依頼</a>
+      <a href="{% url 'accounts:signup' %}" class="nav-link">新規アカウント登録</a>
+    {% endif %}
+  </nav>
+
+
+  <!-- ポップアップメッセージ -->
+  <dialog id="loginPopup">
+    <p id="popupMessage"></p>
+    <button onclick="closePopup()">閉じる</button>
+  </dialog>
+
+
 
   <script>
-    // ログイン状態を示す変数（仮の例としてfalse）
-    const isLoggedIn = false;
+    // URLパラメータをチェックしてポップアップ表示
+    const params = new URLSearchParams(window.location.search);
+    const loginPopup = document.getElementById("loginPopup");
+    const popupMessage = document.getElementById("popupMessage");
 
+    if (params.get("loginStatus") === "success") {
+      const username = params.get("username");
+      popupMessage.textContent = `ログインしました、ようこそ ${username}さん！`;
+      loginPopup.showModal();
+    } else if (params.get("loginStatus") === "failure") {
+      popupMessage.textContent = "ログインしていません";
+      loginPopup.showModal();
+    }
+
+    // ポップアップを閉じる関数
+    function closePopup() {
+      loginPopup.close();
+    }
+
+    {% comment %} // ナビゲーションバーの表示処理
+    const isLoggedIn = params.get("loginStatus") === "success"; // ログイン状態をパラメータで確認
     const navBar = document.getElementById("navBar");
-
     if (isLoggedIn) {
-      // ログイン済みの場合のナビゲーションバー
       navBar.innerHTML = `
-        <a href="#">アカウント情報</a>
-        <a href="#">クエスト一覧</a>
-        <a href="#">クーポン一覧</a>
-        <a href="#">進行中クエスト</a>
-        <a href="#">ログアウト</a>
-      `;
+        <a href="{% url 'accounts:account_info' %}">アカウント情報</a>
+        <a href="{% url 'team:main' %}">クエスト一覧</a>
+        <a href="{% url 'team:coupon' %}">クーポン一覧</a>
+        <a href="{% url 'team:questnow' %}">進行中クエスト</a>
+        <a href="{% url 'accounts:logout_check' %}">ログアウト</a>
+      `
     } else {
-      // 未ログイン時のナビゲーションバー
       navBar.innerHTML = `
         <a href="#">クエスト依頼</a>
-        <a href="#">新規アカウント登録</a>
+        <a href="{% url 'accounts:signup' %}">新規アカウント登録</a>
       `;
     }
+  </script> {% endcomment %}
   </script>
+
 
 </body>
 </html>

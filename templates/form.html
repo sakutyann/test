@@ -183,23 +183,6 @@
     </form>
   </div>
 
-  <script>
-    function submitForm() {
-      const title = document.getElementById('title').value.trim();
-      const description = document.getElementById('description').value.trim();
-      const deadline = document.getElementById('deadline').value.trim();
-      const requester = document.getElementById('requester').value.trim();
-      const prefecture = document.getElementById('prefecture').value;
-      const payment = document.getElementById('payment').value;
 
-      if (!title || !description || !deadline || !requester || !prefecture || !payment) {
-        document.getElementById('error-message').style.display = 'block';
-      } else {
-        document.getElementById('error-message').style.display = 'none';
-        alert('お題が登録されました！');
-        document.getElementById('questForm').reset();  // フォームのリセット
-      }
-    }
-  </script>
 </body>
 </html>
