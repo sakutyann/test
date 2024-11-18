@@ -9,6 +9,8 @@ from django.contrib.auth import login, logout
 import logging
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 logger = logging.getLogger(__name__)
 
@@ -89,11 +91,17 @@ class AccountInfoView(View):
 
 
 
-# メインページのビュー
-def main_view(request):
-    return render(request, 'main.html')
+class MainView(View):
+    """クエスト一覧ページのビュー"""
+    template_name = "main.html"
 
-
+    def get(self, request, *args, **kwargs):
+        # ユーザーがログインしているかを確認し、必要な情報を提供
+        context = {
+            'is_authenticated': request.user.is_authenticated,
+            'username': request.user.username if request.user.is_authenticated else None,
+        }
+        return render(request, self.template_name, context)
 
 
 @login_required

@@ -27,7 +27,7 @@ urlpatterns = [
 
     
     # main画面へ
-    path('main/', views.main_view, name="main"),
+    path('main/', views.MainView.as_view(), name="main"),
     
     # ログアウト確認
     path('logout_check/', views.logout_view, name='logout_check'),
