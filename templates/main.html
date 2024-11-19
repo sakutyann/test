@@ -305,16 +305,15 @@
     const params = new URLSearchParams(window.location.search);
     const loginPopup = document.getElementById("loginPopup");
     const popupMessage = document.getElementById("popupMessage");
-
+    
+    //ログイン時
     if (params.get("loginStatus") === "success") {
       const username = params.get("username");
       popupMessage.textContent = `ログインしました、ようこそ ${username}さん！`;
       loginPopup.showModal();
-      
+    //ログアウト時
     } else {
-      // loginStatus が "success" でない場合、"failure" か他の状態
-      popupMessage.textContent = "ログインしていません";
-      loginPopup.showModal();
+      loginPopup.close(); 
     }
 
     // ポップアップを閉じる関数

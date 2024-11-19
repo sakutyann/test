@@ -94,14 +94,6 @@ class AccountInfoView(View):
 
 
 
-
-
-# # メインページのビュー
-# def main_view(request):
-#     return render(request, 'main.html')
-
-
-
 # ログアウト
 @login_required
 def logout_view(request):

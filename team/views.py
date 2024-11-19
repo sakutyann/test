@@ -18,14 +18,6 @@ class MainView(View):
 def loginworldfunction(request):
           return render(request, 'login.html')
 
-# def mainworldfunction(request):
-#           return render(request, 'main.html')
-      
-# メインページのビュー
-def main_view(request):
-    return render(request, 'main.html')
-
-
 def accountworldfunction(request):
           return render(request, 'account.html')
 

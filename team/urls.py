@@ -8,10 +8,8 @@ app_name = 'team'
 
 
 urlpatterns = [path('login/', views.loginworldfunction),
-            #    path('main/', views.mainworldfunction, name="main"),
-            
-                path('main/', views.main_view, name="main"),   
-                
+               #main画面
+               path('main/', MainView.as_view(), name="main"),
                path('account/', views.accountworldfunction),
                path('logout/', views.logoutworldfunction),
                path('logoutok/', views.logoutokworldfunction),
