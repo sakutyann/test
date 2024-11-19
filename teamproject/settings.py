@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     #ここから追加
     'team',
     # accountsの追加
-    #'accounts.apps.AccountsConfig',
+    'accounts.apps.AccountsConfig',
     
 ]
 
@@ -80,10 +80,17 @@ WSGI_APPLICATION = 'teamproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+
+# Mysql
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',  # MySQLを使用
+        'NAME': 'teamproject',  # 作成したデータベース名
+        'USER': 'root',  # MySQLのユーザー名（デフォルトはroot）
+        'PASSWORD': 'okajin0626',  # MySQLのパスワード
+        'HOST': '127.0.0.1',  # ローカルホスト（ローカルMySQLに接続）
+        'PORT': '3306',  # MySQLのポート（通常は3306）
+ 
     }
 }
 
@@ -131,4 +138,13 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Userモデルの代わりにCustomuserモデルを使用
-#AUTH_USER_MODEL = 'accounts.CustomUser'
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+
+
+
+# ユーザーがログインしていない状態で @login_required 
+# デコレータを使ったビューや、LoginRequiredMixin が必要なページにアクセスした際、
+# 自動的にこのURLへリダイレクトされます。
+LOGIN_URL = '/signin/'
+

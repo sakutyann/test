@@ -4,7 +4,10 @@ from . import views
 app_name = 'team'
 
 urlpatterns = [path('login/', views.loginworldfunction),
-               path('main/', views.mainworldfunction,),
+            #    path('main/', views.mainworldfunction, name="main"),
+            
+                path('main/', views.main_view, name="main"),   
+                
                path('account/', views.accountworldfunction),
                path('logout/', views.logoutworldfunction),
                path('logoutok/', views.logoutokworldfunction),
@@ -14,7 +17,8 @@ urlpatterns = [path('login/', views.loginworldfunction),
                path('couponuse/', views.couponuseformworldfunction),
                path('couponend/', views.couponendformworldfunction),
                path('couponpast/', views.couponpastformworldfunction),
-               path('tittle/', views.tittleformworldfunction),
+               #初期画面
+               path('', views.title_view, name='title'),            
                path('questlook/', views.questlookformworldfunction),
                path('couponnot/', views.couponnotformworldfunction),
                path('questok/', views.questokformworldfunction),

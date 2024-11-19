@@ -22,10 +22,11 @@
       height: 100vh;
       color: #fff;
       overflow: hidden;
+      cursor: pointer; /* クリック可能なことを示すカーソル */
     }
 
     .container {
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: rgba(184, 6, 6, 0.8);
       border: 2px solid #bfa34b;
       border-radius: 15px;
       padding: 50px 30px;
@@ -79,5 +80,13 @@
     <div class="title">〜旅コミカル〜</div>
     <div class="touch-screen">Touch screen</div>
   </div>
+
+  <script>
+    // 画面全体をクリックしたら遷移
+    document.body.addEventListener('click', function() {
+      window.location.href = '{% url "team:main" %}';  // team:main に遷移
+    });
+  </script>
+
 </body>
 </html>

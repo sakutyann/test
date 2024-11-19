@@ -6,12 +6,16 @@ from django.urls import reverse_lazy
 
 from django.views import View
 from django.contrib.auth import login, logout
+from django.contrib import messages
 import logging
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
 logger = logging.getLogger(__name__)
 
+
+
+# サインアップ
 class SignUpView(CreateView):
     """サインアップページのビュー"""
     form_class = CustomUserCreationForm
@@ -28,8 +32,8 @@ class SignUpView(CreateView):
         login(self.request, user)
         
         # セッションが正しく維持されるように保存
-        self.request.session.modified = True
-        self.request.session.save()
+        # self.request.session.modified = True
+        # self.request.session.save()
         
         logger.info(f"User {user.username} logged in successfully after signup.")
         
@@ -43,7 +47,7 @@ class SignUpView(CreateView):
 
 
 
-
+# ログイン
 class SignInView(TemplateView):
     """ログインページのビュー"""
     template_name = "signup.html"
@@ -64,6 +68,7 @@ class SignInView(TemplateView):
             return redirect(f'/main?loginStatus=success&username={form.get_user().username}')
         
         else:
+            messages.error(request, "ユーザーネームまたは、パスワードが間違っています。")
             logger.warning("Authentication failed with errors: %s", form.errors)
             return render(request, self.template_name, {'login_form': form})
 
@@ -89,13 +94,13 @@ class AccountInfoView(View):
 
 
 
-# メインページのビュー
-def main_view(request):
-    return render(request, 'main.html')
+# # メインページのビュー
+# def main_view(request):
+#     return render(request, 'main.html')
 
 
 
-
+# ログアウト
 @login_required
 def logout_view(request):
     user_info = f"ログイン中: {request.user.username}" if request.user.is_authenticated else "ログインしていません"

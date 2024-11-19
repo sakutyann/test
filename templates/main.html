@@ -262,7 +262,9 @@
       const username = params.get("username");
       popupMessage.textContent = `ログインしました、ようこそ ${username}さん！`;
       loginPopup.showModal();
-    } else if (params.get("loginStatus") === "failure") {
+      
+    } else {
+      // loginStatus が "success" でない場合、"failure" か他の状態
       popupMessage.textContent = "ログインしていません";
       loginPopup.showModal();
     }
@@ -278,7 +280,7 @@
     if (isLoggedIn) {
       navBar.innerHTML = `
         <a href="{% url 'accounts:account_info' %}">アカウント情報</a>
-        <a href="#">クエスト一覧</a>
+        <a href="{% url 'team:main' %}">クエスト一覧</a>
         <a href="#">クーポン一覧</a>
         <a href="#">進行中クエスト</a>
         <a href="{% url 'accounts:logout_check' %}">ログアウト</a>
@@ -286,7 +288,7 @@
     } else {
       navBar.innerHTML = `
         <a href="#">クエスト依頼</a>
-        <a href="{% url 'accounts:signup' %}">新規アカウント登録</a>
+        <a href="{% url 'accounts:signup' %}">新規アカウント登録<br>ログイン</a>
       `;
     }
   </script>

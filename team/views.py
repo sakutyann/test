@@ -3,8 +3,13 @@ from django.shortcuts import render
 def loginworldfunction(request):
           return render(request, 'login.html')
 
-def mainworldfunction(request):
-          return render(request, 'main.html')
+# def mainworldfunction(request):
+#           return render(request, 'main.html')
+      
+# メインページのビュー
+def main_view(request):
+    return render(request, 'main.html')
+
 
 def accountworldfunction(request):
           return render(request, 'account.html')
@@ -33,8 +38,9 @@ def couponendformworldfunction(request):
 def couponpastformworldfunction(request):
           return render(request, 'couponpast.html')
 
-def tittleformworldfunction(request):
-          return render(request, 'tittle.html')
+# 初期画面
+def title_view(request):
+    return render(request, 'title.html')
 
 def questlookformworldfunction(request):
           return render(request, 'questlook.html')
