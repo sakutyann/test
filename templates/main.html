@@ -277,15 +277,17 @@
 
   <!-- ナビゲーションバー -->
   <nav class="nav-bar" id="navBar">
-    {% if is_authenticated %}
+    {% if request.user.is_authenticated %}     {% comment %} 変更 {% endcomment %}
+
       <a href="{% url 'accounts:account_info' %}" class="nav-link">アカウント情報</a>
       <a href="{% url 'team:main' %}" class="nav-link">クエスト一覧</a>
       <a href="{% url 'team:coupon' %}" class="nav-link">クーポン一覧</a>
       <a href="{% url 'team:questnow' %}" class="nav-link">進行中クエスト</a>
       <a href="{% url 'accounts:logout_check' %}" class="nav-link">ログアウト</a>
+
     {% else %}
       <a href="#" class="nav-link">クエスト依頼</a>
-      <a href="{% url 'accounts:signup' %}" class="nav-link">新規アカウント登録</a>
+      <a href="{% url 'accounts:signup' %}" class="nav-link">新規アカウント登録<br>ログイン</a>
     {% endif %}
   </nav>
 
@@ -319,27 +321,6 @@
     function closePopup() {
       loginPopup.close();
     }
-
-    {% comment %}
-     // ナビゲーションバーの表示処理
-    const isLoggedIn = params.get("loginStatus") === "success"; // ログイン状態をパラメータで確認
-    const navBar = document.getElementById("navBar");
-    if (isLoggedIn) {
-      navBar.innerHTML = `
-        <a href="{% url 'accounts:account_info' %}">アカウント情報</a>
-        <a href="{% url 'team:main' %}">クエスト一覧</a>
-        <a href="{% url 'team:coupon' %}">クーポン一覧</a>
-        <a href="{% url 'team:questnow' %}">進行中クエスト</a>
-        <a href="{% url 'accounts:logout_check' %}">ログアウト</a>
-      `
-    } else {
-      navBar.innerHTML = `
-        <a href="#">クエスト依頼</a>
-        <a href="{% url 'accounts:signup' %}">新規アカウント登録<br>ログイン</a>
-      `;
-    }
-  </script> 
-  {% endcomment %}
 
   </script>
 
