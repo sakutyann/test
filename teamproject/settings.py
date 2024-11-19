@@ -87,10 +87,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  # MySQLを使用
         'NAME': 'teamproject',  # 作成したデータベース名
         'USER': 'root',  # MySQLのユーザー名（デフォルトはroot）
-        'PASSWORD': 'okajin0626',  # MySQLのパスワード
+        'PASSWORD': 'Djangodayo1414+',  # MySQLのパスワード
         'HOST': '127.0.0.1',  # ローカルホスト（ローカルMySQLに接続）
         'PORT': '3306',  # MySQLのポート（通常は3306）
- 
     }
 }
 
@@ -140,11 +139,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Userモデルの代わりにCustomuserモデルを使用
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
-
-
-
-# ユーザーがログインしていない状態で @login_required 
-# デコレータを使ったビューや、LoginRequiredMixin が必要なページにアクセスした際、
-# 自動的にこのURLへリダイレクトされます。
-LOGIN_URL = '/signin/'
-
+# ログインが必要なページへアクセスした際のリダイレクト先
+LOGIN_URL = 'accounts:main'  

@@ -10,6 +10,8 @@ from django.contrib import messages
 import logging
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+# from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 logger = logging.getLogger(__name__)
 
