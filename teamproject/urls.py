@@ -22,4 +22,6 @@ urlpatterns = [
     path('',include('team.urls')),
     # 追加
     path('', include('accounts.urls')),
+    
+    path('formapp/', include('formapp.urls')),
 ]

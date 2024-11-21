@@ -139,7 +139,7 @@
   <script>
     function submitQuest() {
       // フォーム送信時の動作（フォームの検証など）
-      const form = document.getElementById('questForm');
+      const form = document.getElementById('questRegisterForm');
       if (form.checkValidity()) {
         // フォームが正しく入力されている場合
         window.location.href = '{% url "formapp:quest_success" %}'; // URL で遷移

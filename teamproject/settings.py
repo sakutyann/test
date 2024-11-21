@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     # accountsの追加
     'accounts.apps.AccountsConfig',
     
+    # formappの追加
+    'formapp',
 ]
 
 MIDDLEWARE = [
@@ -87,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  # MySQLを使用
         'NAME': 'teamproject',  # 作成したデータベース名
         'USER': 'root',  # MySQLのユーザー名（デフォルトはroot）
-        'PASSWORD': 'okajin0626',  # MySQLのパスワード
+        'PASSWORD': 'Djangodayo1414+',  # MySQLのパスワード
         'HOST': '127.0.0.1',  # ローカルホスト（ローカルMySQLに接続）
         'PORT': '3306',  # MySQLのポート（通常は3306）
     }

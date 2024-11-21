@@ -38,5 +38,6 @@ def quest_register_view(request):
 
 # クエスト発注完了ページ
 def quest_success_view(request):
+    print('遷移3',request.method)
     return render(request, 'formapp/quest_success.html')
 
