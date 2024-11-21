@@ -12,15 +12,27 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='QuestRequest',
+            name='Customer',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=100)),
-                ('description', models.TextField()),
-                ('deadline', models.DateField()),
-                ('requester', models.CharField(max_length=100)),
-                ('prefecture', models.CharField(max_length=50)),
-                ('payment', models.CharField(max_length=50)),
+                ('name', models.CharField(max_length=20, verbose_name='名前')),
+                ('address', models.CharField(max_length=50, verbose_name='住所')),
+                ('lat', models.DecimalField(decimal_places=6, max_digits=8, verbose_name='緯度')),
+                ('lng', models.DecimalField(decimal_places=6, max_digits=9, verbose_name='経度')),
             ],
+            options={
+                'verbose_name': '顧客',
+                'verbose_name_plural': '顧客',
+            },
+        #     name='QuestRequest',
+        #     fields=[
+        #         ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+        #         ('title', models.CharField(max_length=100)),
+        #         ('description', models.TextField()),
+        #         ('deadline', models.DateField()),
+        #         ('requester', models.CharField(max_length=100)),
+        #         ('prefecture', models.CharField(max_length=50)),
+        #         ('payment', models.CharField(max_length=50)),
+        #     ],
         ),
     ]

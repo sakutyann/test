@@ -8,7 +8,7 @@ app_name = 'team'
 
 
 urlpatterns = [path('login/', views.loginworldfunction),
-              #  main
+               #main画面
                path('main/', MainView.as_view(), name="main"),
                path('account/', views.accountworldfunction),
                path('logout/', views.logoutworldfunction),
@@ -22,7 +22,8 @@ urlpatterns = [path('login/', views.loginworldfunction),
                path('couponuse/', views.couponuseformworldfunction),
                path('couponend/', views.couponendformworldfunction),
                path('couponpast/', views.couponpastformworldfunction),
-               path('tittle/', views.tittleformworldfunction),
+               #初期画面
+               path('', views.title_view, name='title'),            
                path('questlook/', views.questlookformworldfunction),
                path('couponnot/', views.couponnotformworldfunction),
                path('questok/', views.questokformworldfunction),

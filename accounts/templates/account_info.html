@@ -107,22 +107,27 @@
 <body>
   <div class="container">
     <h1>アカウント情報</h1>
+    <!-- ユーザー名 -->
     <div class="info-item">
       <label for="userID">ユーザー名</label>
       <input type="text" id="username" value="{{ username }}" readonly>
       <button class="change-btn" onclick="changeInfo('userID')">変更</button>
     </div>
 
+    <!-- メールアドレス -->
     <div class="info-item">
       <label for="email">メールアドレス</label>
       <input type="email" id="email" value="{{ email }}">
       <button class="change-btn" onclick="changeInfo('email')">変更</button>
     </div>
+  <!-- パスワード
     <div class="info-item">
       <label for="password">パスワード</label>
       <input type="password" id="password" value="password">
       <button class="change-btn" onclick="changeInfo('password')">変更</button>
     </div>
+  -->
+    
     <a href="#" class="back-btn" onclick="goBack()">戻る</a>
     
     <!-- メッセージ表示用の要素 -->
