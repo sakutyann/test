@@ -53,26 +53,26 @@ def newaccountformworldfunction(request):
           return render(request, 'newaccount.html')
 
 # 進行中クエスト
-def questnowformworldfunction(request):
-          return render(request, 'questnow.html')
+# def questnowformworldfunction(request):
+#           return render(request, 'questnow.html')
 
-def questnotformworldfunction(request):
-          return render(request, 'questnot.html')
+# def questnotformworldfunction(request):
+#           return render(request, 'questnot.html')
 
-def questdoformworldfunction(request):
-          return render(request, 'questdo.html')
+# def questdoformworldfunction(request):
+#           return render(request, 'questdo.html')
 
-def questgoformworldfunction(request):
-          return render(request, 'questgo.html')
+# def questgoformworldfunction(request):
+#           return render(request, 'questgo.html')
 
-def questyesformworldfunction(request):
-          return render(request, 'questyes.html')
+# def questyesformworldfunction(request):
+#           return render(request, 'questyes.html')
 
-def questoutformworldfunction(request):
-          return render(request, 'questout.html')
+# def questoutformworldfunction(request):
+#           return render(request, 'questout.html')
 
 
-def questfinformworldfunction(request):
-          return render(request, 'questfin.html')
+# def questfinformworldfunction(request):
+#           return render(request, 'questfin.html')
 
 

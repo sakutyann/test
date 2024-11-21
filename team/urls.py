@@ -23,11 +23,11 @@ urlpatterns = [path('', views.title_view, name='title'),#タイトル画面
                path('quester/', views.questerformworldfunction),
                path('newaccount/', views.newaccountformworldfunction),
               #  進行中クエスト
-               path('questnow/', views.questnowformworldfunction, name='questnow'),
-               path('questnot/', views.questnotformworldfunction),
-               path('questdo/', views.questdoformworldfunction),
-               path('questgo/', views.questgoformworldfunction),
-               path('questyes/', views.questyesformworldfunction),
-               path('questout/', views.questoutformworldfunction),
-               path('questfin/', views.questfinformworldfunction),
-               ]
+            #    path('questnow/', views.questnowformworldfunction, name='questnow'),
+            #    path('questnot/', views.questnotformworldfunction),
+            #    path('questdo/', views.questdoformworldfunction),
+            #    path('questgo/', views.questgoformworldfunction),
+            #    path('questyes/', views.questyesformworldfunction),
+            #    path('questout/', views.questoutformworldfunction),
+            #    path('questfin/', views.questfinformworldfunction),
+             ]
