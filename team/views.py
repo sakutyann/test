@@ -1,10 +1,22 @@
 from django.shortcuts import render
+from django.views import View
+
+            
+            
+class MainView(View):
+    """クエスト一覧ページのビュー"""
+    template_name = "main.html"
+
+    def get(self, request, *args, **kwargs):
+        # ユーザーがログインしているかを確認し、必要な情報を提供
+        context = {
+            'is_authenticated': request.user.is_authenticated,
+            'username': request.user.username if request.user.is_authenticated else None,
+        }
+        return render(request, self.template_name, context)
 
 def loginworldfunction(request):
           return render(request, 'login.html')
-
-def mainworldfunction(request):
-          return render(request, 'main.html')
 
 def accountworldfunction(request):
           return render(request, 'account.html')
@@ -33,8 +45,9 @@ def couponendformworldfunction(request):
 def couponpastformworldfunction(request):
           return render(request, 'couponpast.html')
 
-def tittleformworldfunction(request):
-          return render(request, 'tittle.html')
+# 初期画面
+def title_view(request):
+    return render(request, 'title.html')
 
 def questlookformworldfunction(request):
           return render(request, 'questlook.html')
@@ -51,6 +64,7 @@ def questerformworldfunction(request):
 def newaccountformworldfunction(request):
           return render(request, 'newaccount.html')
 
+# 進行中クエスト
 def questnowformworldfunction(request):
           return render(request, 'questnow.html')
 
