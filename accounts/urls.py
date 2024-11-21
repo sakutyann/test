@@ -27,7 +27,8 @@ urlpatterns = [
     path('logout_check/', views.logout_view, name='logout_check'),
     # ログアウト完了
     path('logout_ok/', views.logoutok_view, name='logout_ok'),
-    
+    #アカウント情報変更
+    path('update-profile/', views.update_profile, name='update_profile'),
     # test
     path('test/', views.test, name="test"),
 
