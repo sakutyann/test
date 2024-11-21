@@ -12,6 +12,12 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 # from django.contrib.auth.mixins import LoginRequiredMixin
 
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from .models import CustomUser
+import json
+import logging
+from django.contrib.auth import update_session_auth_hash
 
 logger = logging.getLogger(__name__)
 
@@ -117,3 +123,39 @@ def test(request):
     
     return render(request, 'test.html', {'user_info': user_info})
 
+@csrf_exempt
+def update_profile(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)  # JSONデータを取得
+            username = data.get('username')
+            email = data.get('email')
+            password = data.get('password')
+
+            user = CustomUser.objects.get(id=request.user.id)
+
+            # 変更された場合のみ更新
+            if username and username != user.username:
+                user.username = username
+            
+            if email and email != user.email:
+                user.email = email
+            
+            if password:  # パスワードが新しい場合のみ
+                user.set_password(password)
+
+            # 常に保存を実行（フィールドが更新された場合、Djangoは最適化して必要な部分だけを更新します）
+            user.save()
+
+            # パスワードが変更された場合はセッションを更新
+            if password:
+                update_session_auth_hash(request, user)
+
+            return JsonResponse({'success': True, 'message': '更新が完了しました'})
+
+        except CustomUser.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'ユーザーが見つかりません'})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)})
+
+    return JsonResponse({'success': False, 'error': '無効なリクエストです'})

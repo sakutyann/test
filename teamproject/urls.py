@@ -24,6 +24,5 @@ urlpatterns = [
     path('', include('accounts.urls')),
     
     path('formapp/', include('formapp.urls')),
-    
     path('userquest/', include('userquest.urls')),
 ]
