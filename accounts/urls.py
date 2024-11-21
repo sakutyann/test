@@ -3,6 +3,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 # from django.contrib.auth. import views as auth_views
 from . import views
+from team.views import MainView
 
 
 # from django.contrib.auth import views as auth_views
@@ -27,7 +28,7 @@ urlpatterns = [
 
     
     # main画面へ
-    path('main/', views.MainView.as_view(), name="main"),
+    path('main/', MainView.as_view(), name="main"),
     
     # ログアウト確認
     path('logout_check/', views.logout_view, name='logout_check'),
