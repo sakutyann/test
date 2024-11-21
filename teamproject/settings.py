@@ -43,10 +43,11 @@ INSTALLED_APPS = [
     'team',
     # accountsの追加
     'accounts.apps.AccountsConfig',
+    'userquest',
     
     #formsppの追加
     'formapp',
-    
+   
 ]
 
 MIDDLEWARE = [

@@ -112,7 +112,7 @@
       font-style: italic;
     }
 
-    {% comment %} /* ナビゲーションバー */
+ /* ナビゲーションバー */
     .nav-bar {
       position: fixed;
       bottom: 0;
@@ -123,8 +123,7 @@
       justify-content: space-around;
       padding: 15px 0;
       box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.4);
-    } {% endcomment %}
-
+    }
     .nav-bar a {
       color: #ffd700;
       font-size: 1.2em;
@@ -282,7 +281,7 @@
       <a href="{% url 'accounts:account_info' %}" class="nav-link">アカウント情報</a>
       <a href="{% url 'team:main' %}" class="nav-link">クエスト一覧</a>
       <a href="{% url 'team:coupon' %}" class="nav-link">クーポン一覧</a>
-      <a href="{% url 'team:questnow' %}" class="nav-link">進行中クエスト</a>
+      <a href="{% url 'userquest:questnow' %}" class="nav-link">進行中クエスト</a>
       <a href="{% url 'accounts:logout_check' %}" class="nav-link">ログアウト</a>
 
     {% else %}

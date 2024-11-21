@@ -3,7 +3,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 # from django.contrib.auth. import views as auth_views
 from . import views
-# from team.views import MainView
+from team.views import MainView
 
 
 # from django.contrib.auth import views as auth_views
@@ -16,13 +16,19 @@ urlpatterns = [
     path('signup/', views.SignUpView.as_view(), name='signup'),
     # ログインのURL設定
     path('signin/', views.SignInView.as_view(), name='signin'),
+
+    
+    # main画面へ
+    path('main/', MainView.as_view(), name="main"),
+    
     # アカウント情報閲覧
     path('account_info/', views.AccountInfoView.as_view(), name='account_info'),
     # ログアウト確認
     path('logout_check/', views.logout_view, name='logout_check'),
     # ログアウト完了
     path('logout_ok/', views.logoutok_view, name='logout_ok'),
-    
+    #アカウント情報変更
+    path('update-profile/', views.update_profile, name='update_profile'),
     # test
     path('test/', views.test, name="test"),
 
