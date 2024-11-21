@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os  # osモジュールのインポート
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,6 +43,9 @@ INSTALLED_APPS = [
     'team',
     # accountsの追加
     'accounts.apps.AccountsConfig',
+    
+    #formsppの追加
+    'formapp',
     
 ]
 
@@ -87,7 +91,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  # MySQLを使用
         'NAME': 'teamproject',  # 作成したデータベース名
         'USER': 'root',  # MySQLのユーザー名（デフォルトはroot）
-        'PASSWORD': 'okajin0626',  # MySQLのパスワード
+        'PASSWORD': 'kikimimi12',  # MySQLのパスワード
         'HOST': '127.0.0.1',  # ローカルホスト（ローカルMySQLに接続）
         'PORT': '3306',  # MySQLのポート（通常は3306）
     }
@@ -141,3 +145,9 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # ログインが必要なページへアクセスした際のリダイレクト先
 LOGIN_URL = 'accounts:main'  
+
+# アップロードされたメディアファイルのURL
+MEDIA_URL = '/media/'  
+
+# アップロードされたファイルを保存するディレクトリのパス
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  
