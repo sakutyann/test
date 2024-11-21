@@ -121,21 +121,21 @@
     <h1>クエスト詳細</h1>
     <p class="description">京都の名所で3枚の写真を撮ってアップロードしましょう！</p>
 
-    <a href="#" class="photo-link">
+    <a href="{% url 'userquest:questgo' %}" class="photo-link">
       <div class="photo-item">
         <h2>1. 清水寺の写真を撮影</h2>
         <p>清水の舞台からの眺めを撮影してください。</p>
       </div>
     </a>
 
-    <a href="#" class="photo-link">
+    <a href="{% url 'userquest:questgo' %}" class="photo-link">
       <div class="photo-item">
         <h2>2. 金閣寺の写真を撮影</h2>
         <p>黄金に輝く金閣寺を撮影してください。</p>
       </div>
     </a>
 
-    <a href="#" class="photo-link">
+    <a href="{% url 'userquest:questgo' %}" class="photo-link">
       <div class="photo-item">
         <h2>3. 伏見稲荷大社の鳥居</h2>
         <p>千本鳥居の中で好きな場所を撮影してください。</p>
@@ -144,8 +144,8 @@
 
     <!-- 完了ボタンと戻るボタン -->
     <div class="buttons">
-      <a href="#" class="button complete-button">完了</a>
-      <a href="#" class="button back-button">戻る</a>
+      <a href="{% url 'userquest:questfin' %}"class="button complete-button">完了</a>
+      <a href="{% url 'userquest:questnow' %}" class="button back-button">戻る</a>
     </div>
   </div>
 

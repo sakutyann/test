@@ -22,6 +22,10 @@ urlpatterns = [
     path('',include('team.urls')),
     # 追加
     path('', include('accounts.urls')),
+<<<<<<< HEAD
     
     path('formapp/', include('formapp.urls')),
+=======
+    path('', include('userquest.urls')),
+>>>>>>> 8405d0f94c4b63db48a892db31922073981a2346
 ]
