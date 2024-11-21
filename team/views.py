@@ -18,9 +18,6 @@ class MainView(View):
 def loginworldfunction(request):
           return render(request, 'login.html')
 
-# def mainworldfunction(request):
-#           return render(request, 'main.html')
-
 def accountworldfunction(request):
           return render(request, 'account.html')
 
@@ -48,8 +45,9 @@ def couponendformworldfunction(request):
 def couponpastformworldfunction(request):
           return render(request, 'couponpast.html')
 
-def tittleformworldfunction(request):
-          return render(request, 'tittle.html')
+# 初期画面
+def title_view(request):
+    return render(request, 'title.html')
 
 def questlookformworldfunction(request):
           return render(request, 'questlook.html')
@@ -67,26 +65,26 @@ def newaccountformworldfunction(request):
           return render(request, 'newaccount.html')
 
 # 進行中クエスト
-def questnowformworldfunction(request):
-          return render(request, 'questnow.html')
+# def questnowformworldfunction(request):
+#           return render(request, 'questnow.html')
 
-def questnotformworldfunction(request):
-          return render(request, 'questnot.html')
+# def questnotformworldfunction(request):
+#           return render(request, 'questnot.html')
 
-def questdoformworldfunction(request):
-          return render(request, 'questdo.html')
+# def questdoformworldfunction(request):
+#           return render(request, 'questdo.html')
 
-def questgoformworldfunction(request):
-          return render(request, 'questgo.html')
+# def questgoformworldfunction(request):
+#           return render(request, 'questgo.html')
 
-def questyesformworldfunction(request):
-          return render(request, 'questyes.html')
+# def questyesformworldfunction(request):
+#           return render(request, 'questyes.html')
 
-def questoutformworldfunction(request):
-          return render(request, 'questout.html')
+# def questoutformworldfunction(request):
+#           return render(request, 'questout.html')
 
 
-def questfinformworldfunction(request):
-          return render(request, 'questfin.html')
+# def questfinformworldfunction(request):
+#           return render(request, 'questfin.html')
 
 

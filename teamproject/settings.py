@@ -42,7 +42,10 @@ INSTALLED_APPS = [
     'team',
     # accountsの追加
     'accounts.apps.AccountsConfig',
+    'userquest',
     
+    # formappの追加
+    'formapp',
 ]
 
 MIDDLEWARE = [
@@ -80,6 +83,8 @@ WSGI_APPLICATION = 'teamproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+
+# Mysql
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # MySQLを使用

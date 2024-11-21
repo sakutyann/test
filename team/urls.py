@@ -8,7 +8,7 @@ app_name = 'team'
 
 
 urlpatterns = [path('login/', views.loginworldfunction),
-              #  main
+               #main画面
                path('main/', MainView.as_view(), name="main"),
                path('account/', views.accountworldfunction),
                path('logout/', views.logoutworldfunction),
@@ -22,18 +22,19 @@ urlpatterns = [path('login/', views.loginworldfunction),
                path('couponuse/', views.couponuseformworldfunction),
                path('couponend/', views.couponendformworldfunction),
                path('couponpast/', views.couponpastformworldfunction),
-               path('tittle/', views.tittleformworldfunction),
+               #初期画面
+               path('', views.title_view, name='title'),            
                path('questlook/', views.questlookformworldfunction),
                path('couponnot/', views.couponnotformworldfunction),
                path('questok/', views.questokformworldfunction),
                path('quester/', views.questerformworldfunction),
                path('newaccount/', views.newaccountformworldfunction),
               #  進行中クエスト
-               path('questnow/', views.questnowformworldfunction, name='questnow'),
-               path('questnot/', views.questnotformworldfunction),
-               path('questdo/', views.questdoformworldfunction),
-               path('questgo/', views.questgoformworldfunction),
-               path('questyes/', views.questyesformworldfunction),
-               path('questout/', views.questoutformworldfunction),
-               path('questfin/', views.questfinformworldfunction),
-               ]
+            #    path('questnow/', views.questnowformworldfunction, name='questnow'),
+            #    path('questnot/', views.questnotformworldfunction),
+            #    path('questdo/', views.questdoformworldfunction),
+            #    path('questgo/', views.questgoformworldfunction),
+            #    path('questyes/', views.questyesformworldfunction),
+            #    path('questout/', views.questoutformworldfunction),
+            #    path('questfin/', views.questfinformworldfunction),
+             ]

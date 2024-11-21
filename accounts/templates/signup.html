@@ -126,8 +126,10 @@
 
     <form id="register-form" name="signup" class="active" method="post" action="{% url 'accounts:signup' %}">
       {% csrf_token %}
-      <input type="text" name="username" placeholder="ユーザー名" value="{{ form.username.value }}" required>
-      <input type="email" name="email" placeholder="メールアドレス" value="{{ form.email.value }}" required>
+      <!-- <input type="text" name="username" placeholder="ユーザー名" value="{{ form.username.value }}" required> -->
+      <input type="text" name="username" placeholder="ユーザー名" required>
+      <!-- <input type="email" name="email" placeholder="メールアドレス" value="{{ form.email.value }}" required> -->
+      <input type="email" name="email" placeholder="メールアドレス" required>
       <input type="password" name="password1" placeholder="パスワード" required>
       <input type="password" name="password2" placeholder="パスワード確認" required>
       <button type="submit" class="submit-btn">登録</button>
@@ -151,14 +153,27 @@
       <button type="submit" class="submit-btn">ログイン</button>
       <p class="note">初めての方は「新規登録」からご登録ください。</p>
       
-      <div>
-        {% for field in login_form %}
-          {% for error in field.errors %}
-            <p style="color: red">{{ error }}</p>
-          {% endfor %}
+
+    <!-- フォームのエラー表示 -->
+    <div>
+      {% if messages %}
+        {% for message in messages %}
+          <p style="color: red">{{ message }}</p>
         {% endfor %}
-      </div>
+      {% endif %}
+    </div>
+
+    <!-- フィールドごとのエラーメッセージを表示 -->
+    <div>
+      {% for field in login_form %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      {% endfor %}
+    </div>
+
     </form>
+
   </div>
 
   <script>
