@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 
             
-            
+#クエスト一覧  
 class MainView(View):
     """クエスト一覧ページのビュー"""
     template_name = "main.html"
@@ -14,18 +14,6 @@ class MainView(View):
             'username': request.user.username if request.user.is_authenticated else None,
         }
         return render(request, self.template_name, context)
-
-def loginworldfunction(request):
-          return render(request, 'login.html')
-
-def accountworldfunction(request):
-          return render(request, 'account.html')
-
-def logoutworldfunction(request):
-          return render(request, 'logout.html')
-
-def logoutokworldfunction(request):
-          return render(request, 'logoutok.html')
 
 def formworldfunction(request):
           return render(request, 'form.html')

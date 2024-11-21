@@ -38,9 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    #ここから追加
     'team',
-    # accountsの追加
     'accounts.apps.AccountsConfig',
     
 ]
