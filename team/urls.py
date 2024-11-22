@@ -7,23 +7,16 @@ from .views import MainView
 app_name = 'team'
 
 
-urlpatterns = [path('login/', views.loginworldfunction),
-               #main画面
-               path('main/', MainView.as_view(), name="main"),
-               path('account/', views.accountworldfunction),
-               path('logout/', views.logoutworldfunction),
-               path('logoutok/', views.logoutokworldfunction),
-               #クエスト依頼フォーム
-               path('form/', views.formworldfunction,name='form'),
-               #お題登録フォーム
-               path('questform/', views.questformworldfunction,name='questform'),
-               
+urlpatterns = [path('', views.title_view, name='title'),#タイトル画面                
+               path('main/', MainView.as_view(), name="main"),#main画面(クエスト一覧)
+               path('form/', views.formworldfunction,name='form'),#クエスト依頼フォーム
+               path('questform/', views.questformworldfunction,name='questform'),#お題登録フォーム
+
                path('coupon/', views.couponformworldfunction, name='coupon'),
                path('couponuse/', views.couponuseformworldfunction),
                path('couponend/', views.couponendformworldfunction),
                path('couponpast/', views.couponpastformworldfunction),
-               #初期画面
-               path('', views.title_view, name='title'),            
+           
                path('questlook/', views.questlookformworldfunction),
                path('couponnot/', views.couponnotformworldfunction),
                path('questok/', views.questokformworldfunction),

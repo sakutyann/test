@@ -2,54 +2,13 @@ from django import forms
 from .models import Quest, QuestRegister
 from django.core.exceptions import ValidationError
 
-
-# クエスト登録フォーム
-class QuestRegisterForm(forms.ModelForm):
-    class Meta:
-        model = QuestRegister
-        fields = ['name', 'address', 'answer_photo', 'hours', 'reward', 'additional_notes']
-        widgets = {
-            'name': forms.TextInput(attrs={
-                'placeholder': '名前を入力',
-                'class': 'form-control',
-            }),
-            'address': forms.TextInput(attrs={
-                'placeholder': '住所を入力',
-                'class': 'form-control',
-            }),
-            'answer_photo': forms.ClearableFileInput(attrs={
-                'class': 'form-control',
-            }),
-            'hours': forms.TextInput(attrs={
-                'placeholder': '例: 9:00 - 17:00',
-                'class': 'form-control',
-            }),
-            'reward': forms.NumberInput(attrs={
-                'placeholder': '報酬額を入力',
-                'class': 'form-control',
-            }),
-            'additional_notes': forms.Textarea(attrs={
-                'placeholder': '特記事項など',
-                'class': 'form-control',
-                'rows': 3,
-            }),
-        }
-
-    # 画像サイズ制限のバリデーション
-    def clean_answer_photo(self):
-        photo = self.cleaned_data.get('answer_photo')
-        if photo:
-            max_size = 5 * 1024 * 1024  # 5MB
-            if photo.size > max_size:
-                raise ValidationError("画像サイズは5MB以内にしてください。")
-        return photo
-
-
+# クエスト依頼
 class QuestModelForm(forms.ModelForm):
     class Meta:
         model = Quest
-        fields = ['title', 'description', 'deadline', 'requester', 'prefecture', 'payment']
-    
+        fields = ['title', 'description', 'deadline', 'requester', 'prefecture', 'reward', 'payment']
+        
+    # 都道府県フィールド
     PREFECTURE_CHOICES = [
       # ('key', 'name')
         (0, '北海道'),
@@ -100,15 +59,33 @@ class QuestModelForm(forms.ModelForm):
         (45, '鹿児島県'),
         (46, '沖縄県'),
     ]
+
+    # 報酬（クーポン）フィールド
+    REWARD_CHOICES = [
+        (1, '3%off'),
+        (2, '5%off'),
+        (3, '10%off'),
+    ]
     
+    # タイトル
     title = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    # クエスト内容
     description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
+    # 期限
     deadline = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}))
+    # 依頼者
     requester = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    # 都道府県
     prefecture = forms.ChoiceField(
         choices=PREFECTURE_CHOICES,
         widget=forms.Select(attrs={'class': 'form-control', 'id': 'prefecture'})
     )
+    # 報酬
+    reward = forms.ChoiceField(
+        choices=REWARD_CHOICES,
+        widget=forms.Select(attrs={'class': 'form-control', 'id': 'reward'})
+    ) 
+    # 支払方法
     payment = forms.ChoiceField(
         choices=[
             ('銀行振込', '銀行振込'),
@@ -117,3 +94,44 @@ class QuestModelForm(forms.ModelForm):
         ],
         widget=forms.Select(attrs={'class': 'form-control', 'id': 'payment'})
     )
+    
+    
+    
+
+# お題登録フォーム
+class QuestRegisterForm(forms.ModelForm):
+    class Meta:
+        model = QuestRegister
+        fields = ['name', 'address', 'answer_photo', 'hours', 'additional_notes']
+        widgets = {   
+            # 住所
+            'name': forms.TextInput(attrs={
+                'placeholder': '名前を入力',
+                'class': 'form-control',
+            }),
+            # 場所
+            'address': forms.TextInput(attrs={
+                'placeholder': '住所を入力',
+                'class': 'form-control',
+            }),
+            # 解答写真
+            'answer_photo': forms.ClearableFileInput(attrs={
+                'class': 'form-control',
+            }),
+            # お題内容
+            'additional_notes': forms.Textarea(attrs={
+                'placeholder': '特記事項など',
+                'class': 'form-control',
+                'rows': 3,
+            }),
+        }
+
+    # 画像サイズ制限のバリデーション
+    def clean_answer_photo(self):
+        photo = self.cleaned_data.get('answer_photo')
+        if photo:
+            max_size = 5 * 1024 * 1024  # 5MB
+            if photo.size > max_size:
+                raise ValidationError("画像サイズは5MB以内にしてください。")
+        return photo
+

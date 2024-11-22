@@ -107,36 +107,40 @@
     <h1>お題登録フォーム</h1>
     <form id="questRegisterForm" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
+
+      <!-- お題名 -->
       <div class="form-group">
         <label for="{{ form.name.id_for_label }}">名前</label>
         {{ form.name|add_class:"form-control" }}
       </div>
+
+      <!-- 場所 -->
       <div class="form-group">
         <label for="{{ form.address.id_for_label }}">住所</label>
         {{ form.address|add_class:"form-control" }}
       </div>
+
+      <!-- 解答写真 -->
       <div class="form-group">
         <label for="{{ form.answer_photo.id_for_label }}">解答写真</label>
         {{ form.answer_photo|add_class:"form-control" }}
       </div>
-      {% comment %} <div class="form-group">
-        <label for="{{ form.hours.id_for_label }}">営業時間</label>
-        {{ form.hours|add_class:"form-control" }}
-      </div>
+
+      <!-- お題内意 -->
       <div class="form-group">
-        <label for="{{ form.reward.id_for_label }}">報酬</label>
-        {{ form.reward|add_class:"form-control" }}
-      </div> {% endcomment %}
-      <div class="form-group">
-        <label for="{{ form.additional_notes.id_for_label }}">自由記入欄</label>
+        <label for="{{ form.additional_notes.id_for_label }}">お題内容</label>
         {{ form.additional_notes|add_class:"form-control" }}
       </div>
+
+      <!-- 注意メッセージ -->
       <p class="notice">※一度登録すると消せませんのでご注意ください</p>
       <button type="submit" class="submit-btn" onclick="submitQuest()">終了</button>
       <button type="submit" class="submit-btn" onclick="submitQuest()">続行</button>
       <p class="error" id="error-message">すべての項目を正しく入力してください</p>
+
     </form>
   </div>
+
   <script>
     function submitQuest() {
       // フォーム送信時の動作（フォームの検証など）
