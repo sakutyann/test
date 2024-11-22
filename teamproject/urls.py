@@ -21,7 +21,8 @@ urlpatterns = [
     #追加
     path('',include('team.urls')),
     # 追加
-    path('', include('accounts.urls')),
-    path('', include('userquest.urls')),
-    path('', include('formapp.urls')), 
+    path('accounts/', include('accounts.urls')),
+    path('uesrquest/', include('userquest.urls')),
+    path('formapp/', include('formapp.urls')),
+    path('userquest/', include('userquest.urls')),
 ]
