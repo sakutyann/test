@@ -105,6 +105,7 @@
     <form id="questForm" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
 
+      <!-- タイトル -->
       <div class="form-group">
         <label for="{{ form.title.id_for_label }}">題名</label>
         <input type="text" 
@@ -114,14 +115,20 @@
                 placeholder="クエストの題名" 
                 value="{{ form.title.value|default:'' }}">
       </div>
+
+      <!-- 内容 -->
       <div class="form-group">
         <label for="{{ form.title.id_for_label }}">内容</label>
         {{ form.description|add_class:"form-control" }}
       </div>
+
+      <!-- 期限 -->
       <div class="form-group">
         <label for="deadline">期限</label>
         {{ form.deadline|add_class:"form-control" }}
       </div>
+
+      <!-- 依頼者記入 -->
       <div class="form-group">
         <label for="requester">依頼者名</label>
         {{ form.requester|add_class:"form-control" }}
@@ -134,16 +141,28 @@
         {{ form.prefecture }}
       </div>
 
+        <!-- 報酬（クーポン）フィールド（select） -->
+      <div class="form-group">
+        {% csrf_token %}
+        <label for="{{ form.reward.id_for_label }}">クーポン</label>
+        {{ form.reward }}
+      </div>
+
+      <!-- 支払方法 -->
       <div class="form-group">
         <label for="payment">支払い方法</label>
         {{ form.payment|add_class:"form-control" }}
       </div>
+
       <div class="form-group">
-      <button type="submit" class="submit-btn" onclick="submitForm()">お題登録</button>
+        <button type="submit" class="submit-btn" onclick="submitForm()">お題登録</button>
       </div>
+      <!-- エラー -->
       <p class="error" id="error-message">正しく入力してください</p>
-  </form>
+
+    </form>
   </div>
+
   <script>
     function submitForm() {
       // フォーム送信時の動作（フォームの検証など）
@@ -158,8 +177,6 @@
       }
     }
   </script>
-
-
 </body>
 </html>
 
