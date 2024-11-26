@@ -211,22 +211,21 @@
 
   <!-- メインコンテンツ -->
   <div class="content">
-    <h1>クエスト一覧</h1>
     
-    <!-- 地域ごとのクエスト -->
     <div class="region">
-      <h2>北海道・東北地方</h2>
-      <div class="prefecture">
-        <h3>北海道</h3>
-        <a class="quest-link" href="#">雪山を登ろう！</a>
-        <a class="quest-link" href="#">函館で名所めぐり</a>
-      </div>
-      <div class="prefecture"><h3>青森県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>岩手県</h3><a class="quest-link" href="#">岩手山に登ろう！</a></div>
-      <div class="prefecture"><h3>宮城県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>秋田県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>山形県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>福島県</h3><p class="no-quest">クエストがありません</p></div>
+      <h1>クエスト一覧</h1>
+      {% for quest in quests %}
+        <div>
+          <h2>{{ quest.title }}</h2>
+          <p>{{ quest.description }}</p>
+          <p>依頼者: {{ quest.requester }}</p>
+          <p>都道府県: {{ quest.prefecture }}</p>
+          <p>報酬: {{ quest.payment }}</p>
+          <p>締切: {{ quest.deadline }}</p>
+        </div>
+      {% empty %}
+        <p>クエストがありません。</p>
+      {% endfor %}
     </div>
 
     <div class="region">

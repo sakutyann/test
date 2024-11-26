@@ -151,7 +151,7 @@
       if (form.checkValidity()) {
         console.log("test")
         // フォームが正しく入力されている場合
-        window.location.href = '{% url "formapp:quest_form" %}'; // URL で遷移
+        window.location.href = '{% url "formapp:quest_register" %}'; // URL で遷移
       } else {
         // 入力に不備がある場合のエラーメッセージ
         document.getElementById('error-message').style.display = 'block';
