@@ -217,12 +217,9 @@
     <div class="region">
       <h2>北海道・東北地方</h2>
       <div class="prefecture">
-          <h3>北海道</h3>
-          {% for quest in prefectures.0 %}
-              <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
-          {% empty %}
-              <p class="no-quest">クエストがありません</p>
-          {% endfor %}
+        <h3>北海道</h3>
+        <a class="quest-link" href="#">雪山を登ろう！</a>
+        <a class="quest-link" href="#">函館で名所めぐり</a>
       </div>
       <div class="prefecture"><h3>青森県</h3><p class="no-quest">クエストがありません</p></div>
       <div class="prefecture"><h3>岩手県</h3><a class="quest-link" href="#">岩手山に登ろう！</a></div>

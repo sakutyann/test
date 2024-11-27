@@ -42,8 +42,6 @@ INSTALLED_APPS = [
     'team',
     'accounts.apps.AccountsConfig',
     'userquest',
-    
-    #formsppの追加
     'formapp',
    
 ]

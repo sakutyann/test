@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from .views import MainView
-
+from team.views import QuestDetailView
 
 
 app_name = 'team'
@@ -9,8 +9,9 @@ app_name = 'team'
 
 urlpatterns = [path('', views.title_view, name='title'),#タイトル画面                
                path('main/', MainView.as_view(), name="main"),#main画面(クエスト一覧)
-               path('form/', views.formworldfunction,name='form'),#クエスト依頼フォーム
-               path('questform/', views.questformworldfunction,name='questform'),#お題登録フォーム
+               path('quest/<int:pk>/', views.QuestDetailView.as_view(), name='quest_detail'),#クエスト詳細画面
+               path('questdo/', views.QuestDetailView.as_view(), name='quest_detail'),#クエスト詳細画面
+               
 
                path('coupon/', views.couponformworldfunction, name='coupon'),
                path('couponuse/', views.couponuseformworldfunction),
@@ -22,12 +23,4 @@ urlpatterns = [path('', views.title_view, name='title'),#タイトル画面
                path('questok/', views.questokformworldfunction),
                path('quester/', views.questerformworldfunction),
                path('newaccount/', views.newaccountformworldfunction),
-              #  進行中クエスト
-            #    path('questnow/', views.questnowformworldfunction, name='questnow'),
-            #    path('questnot/', views.questnotformworldfunction),
-            #    path('questdo/', views.questdoformworldfunction),
-            #    path('questgo/', views.questgoformworldfunction),
-            #    path('questyes/', views.questyesformworldfunction),
-            #    path('questout/', views.questoutformworldfunction),
-            #    path('questfin/', views.questfinformworldfunction),
              ]
