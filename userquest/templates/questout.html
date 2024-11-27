@@ -138,7 +138,8 @@
     <p class="failure-message">もう一度やり直しましょう！</p>
 
     <!-- リトライフォーム -->
-    <form action="upload_endpoint" method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
       <label for="photo">新しい写真をアップロードしてください:</label>
       <input type="file" id="photo" name="photo" accept="image/*" required>
 

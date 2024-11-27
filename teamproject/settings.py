@@ -42,8 +42,6 @@ INSTALLED_APPS = [
     'team',
     'accounts.apps.AccountsConfig',
     'userquest',
-    
-    #formsppの追加
     'formapp',
    
 ]
@@ -90,9 +88,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  # MySQLを使用
         'NAME': 'teamproject',  # 作成したデータベース名
         'USER': 'root',  # MySQLのユーザー名（デフォルトはroot）
+<<<<<<< HEAD
         'PASSWORD': 'Se0828nb',  # MySQLのパスワード
+=======
+        'PASSWORD': 'Sannkakutyokopai_ois',  # MySQLのパスワード
+>>>>>>> 5d29d4c148ee754ff4bbdca8e8a867129026f260
         'HOST': '127.0.0.1',  # ローカルホスト（ローカルMySQLに接続）
         'PORT': '3306',  # MySQLのポート（通常は3306）
+        
     }
 }
 

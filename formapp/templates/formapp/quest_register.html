@@ -105,8 +105,16 @@
 <body>
   <div class="container">
     <h1>お題登録フォーム</h1>
+    <!-- Quest ID Debug 表示 -->
+    <p>Quest ID: {{ form.initial.quest_id }}</p>
+
     <form id="questRegisterForm" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
+
+      <!-- Quest ID 確認 -->
+      <div class="form-group">
+        {{ form.quest_id|add_class:"form-control" }}
+      </div>  
 
       <!-- お題名 -->
       <div class="form-group">
@@ -134,23 +142,17 @@
 
       <!-- 注意メッセージ -->
       <p class="notice">※一度登録すると消せませんのでご注意ください</p>
+
       <button type="submit" class="submit-btn" onclick="submitQuest()">終了</button>
       <p class="error" id="error-message">すべての項目を正しく入力してください</p>
 
     </form>
   </div>
-
+  
   <script>
     function submitQuest() {
       // フォーム送信時の動作（フォームの検証など）
       const form = document.getElementById('questRegisterForm');
-      if (form.checkValidity()) {
-        // フォームが正しく入力されている場合
-        window.location.href = '{% url "formapp:quest_success" %}'; // URL で遷移
-      } else {
-        // 入力に不備がある場合のエラーメッセージ
-        document.getElementById('error-message').style.display = 'block';
-      }
     }
   </script>
   

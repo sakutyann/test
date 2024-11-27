@@ -102,9 +102,20 @@ class QuestModelForm(forms.ModelForm):
 class QuestRegisterForm(forms.ModelForm):
     class Meta:
         model = QuestRegister
+<<<<<<< HEAD
         fields = ['name', 'address', 'answer_photo', 'additional_notes']
         widgets = {   
             # 住所
+=======
+        fields = ['quest_id', 'name', 'address', 'answer_photo', 'additional_notes']
+        
+        widgets = {  
+                   
+            # クエストIDを非表示
+            'quest_id': forms.HiddenInput(),       
+                    
+            # 名前
+>>>>>>> 5d29d4c148ee754ff4bbdca8e8a867129026f260
             'name': forms.TextInput(attrs={
                 'placeholder': '名前を入力',
                 'class': 'form-control',
@@ -124,6 +135,7 @@ class QuestRegisterForm(forms.ModelForm):
                 'class': 'form-control',
                 'rows': 3,
             }),
+            
         }
 
     # 画像サイズ制限のバリデーション
