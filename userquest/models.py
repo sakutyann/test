@@ -11,7 +11,7 @@ class Coupon(models.Model):
     used_at = models.DateTimeField(verbose_name="使用期限")
     
     def __str__(self):
-        return self.name
+        return f"Coupon {self.coupon_id}"
 
 class UserCoupon(models.Model):
     user_coupon_id = models.AutoField(primary_key=True, verbose_name="ユーザークーポンID")

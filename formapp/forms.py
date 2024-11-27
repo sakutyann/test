@@ -102,7 +102,7 @@ class QuestModelForm(forms.ModelForm):
 class QuestRegisterForm(forms.ModelForm):
     class Meta:
         model = QuestRegister
-        fields = ['name', 'address', 'answer_photo', 'hours', 'additional_notes']
+        fields = ['name', 'address', 'answer_photo', 'additional_notes']
         widgets = {   
             # 住所
             'name': forms.TextInput(attrs={

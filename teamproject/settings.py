@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  # MySQLを使用
         'NAME': 'teamproject',  # 作成したデータベース名
         'USER': 'root',  # MySQLのユーザー名（デフォルトはroot）
-        'PASSWORD': 'kikimimi12',  # MySQLのパスワード
+        'PASSWORD': 'Se0828nb',  # MySQLのパスワード
         'HOST': '127.0.0.1',  # ローカルホスト（ローカルMySQLに接続）
         'PORT': '3306',  # MySQLのポート（通常は3306）
     }

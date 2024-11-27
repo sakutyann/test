@@ -11,8 +11,8 @@ urlpatterns = [path('questnow/', views.questnowformworldfunction, name='questnow
                path('questyes/', views.questyesformworldfunction, name='questyes'),
                path('questout/', views.questoutformworldfunction, name='questout'),
                path('questfin/', views.questfinformworldfunction, name='questfin'),
-               path('coupons/', views.coupon_list, name='coupon_list'),  # クーポン一覧
-               path('coupons/<int:coupon_id>/', views.coupon_detail, name='coupon_detail'),  # クーポン詳細
+               path('coupon/', views.coupon_list, name='coupon'),  # クーポン一覧
+               path('coupons/<int:coupon_id>/detail', views.coupon_detail, name='coupon_detail'),  # クーポン詳細
                path('coupons/used/', views.used_coupons, name='used_coupons'),  # 使用済みクーポン
                path('coupons/complete/', views.coupon_complete, name='coupon_complete'),  # クーポン使用完了
 

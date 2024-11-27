@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Coupon,UserCoupon
+from django.contrib.auth.decorators import login_required
 
 def questnowformworldfunction(request):
           return render(request, 'questnow.html')
@@ -23,8 +24,19 @@ def questoutformworldfunction(request):
 def questfinformworldfunction(request):
           return render(request, 'questfin.html')
 
+@login_required
 def coupon_list(request):
-    coupons = Coupon.objects.filter(status=False)  # 未使用クーポン
+    user_coupons = UserCoupon.objects.filter(user_account_id=request.user,
+                                             coupon_status=0)  # 未使用クーポン
+    
+    coupons = [
+        {
+            'id': user_coupon.coupon_id.coupon_id,
+            'name':user_coupon.coupon_id.coupon_description,
+        }
+        for user_coupon in user_coupons
+    ]
+    print(coupons)
     return render(request, 'coupon.html', {'coupons': coupons})
 
 def coupon_detail(request, coupon_id):
