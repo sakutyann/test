@@ -3,7 +3,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 # from django.contrib.auth. import views as auth_views
 from . import views
-from team.views import MainView
+# from team.views import MainView
 
 
 # from django.contrib.auth import views as auth_views
@@ -19,7 +19,7 @@ urlpatterns = [
 
     
     # main画面へ
-    path('main/', MainView.as_view(), name="main"),
+    # path('main/', MainView.as_view(), name="main"),
     
     # アカウント情報閲覧
     path('account_info/', views.AccountInfoView.as_view(), name='account_info'),

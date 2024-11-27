@@ -118,36 +118,47 @@
 
   <!-- メインコンテンツ -->
   <div class="content">
+    <!-- クエスト詳細 -->
     <h1>クエスト詳細</h1>
-    <p class="description">京都の名所で3枚の写真を撮ってアップロードしましょう！</p>
+    <p class="description"><strong>内容:</strong>{{ quest.description }}</p>
+    <p class="description"><strong>期限:</strong>{{ quest.deadline }}</p>
+    <p class="description"><strong>依頼者:</strong>{{ quest.requester }}</p>
+    <p class="description"><strong>報酬:</strong>{{ quest.reward }}</p>
 
     <a href="{% url 'userquest:questgo' %}" class="photo-link">
       <div class="photo-item">
-        <h2>1. 清水寺の写真を撮影</h2>
-        <p>清水の舞台からの眺めを撮影してください。</p>
-      </div>
-    </a>
+    
 
-    <a href="{% url 'userquest:questgo' %}" class="photo-link">
-      <div class="photo-item">
-        <h2>2. 金閣寺の写真を撮影</h2>
-        <p>黄金に輝く金閣寺を撮影してください。</p>
-      </div>
-    </a>
-
-    <a href="{% url 'userquest:questgo' %}" class="photo-link">
-      <div class="photo-item">
-        <h2>3. 伏見稲荷大社の鳥居</h2>
-        <p>千本鳥居の中で好きな場所を撮影してください。</p>
-      </div>
-    </a>
+    <!-- お題詳細 -->
+    {% for register in quest_registers %}
+      <a href="{% url 'userquest:questgo' %}" class="photo-link">
+        <div class="photo-item">
+          <h2>{{ forloop.counter }}. {{ register.name }}</h2>
+          <p>{{ register.additional_notes }}</p>
+        </div>
+      </a>
+    {% empty %}
+      <p>お題は登録されていません。</p>
+    {% endfor %}
 
     <!-- 完了ボタンと戻るボタン -->
     <div class="buttons">
       <a href="{% url 'userquest:questfin' %}"class="button complete-button">完了</a>
-      <a href="{% url 'userquest:questnow' %}" class="button back-button">戻る</a>
+      <!-- <a href="{% url 'userquest:questnow' %}" class="button back-button">戻る</a> -->
+      <button class="button back-button" onclick="cancelLogout()">戻る</button>
+
     </div>
   </div>
 
+
+
+</div>
+</div>
+
+<script>
+function cancelLogout() {
+  window.history.back(); // 前の画面に戻る
+}
+</script>
 </body>
 </html>

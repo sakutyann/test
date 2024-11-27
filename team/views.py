@@ -1,26 +1,108 @@
-from django.shortcuts import render
-from django.views import View
+# from django.shortcuts import render
+# from django.views import View
 
             
-#クエスト一覧  
+# #クエスト一覧  
+# class MainView(View):
+#     """クエスト一覧ページのビュー"""
+#     template_name = "main.html"
+
+#     def get(self, request, *args, **kwargs):
+#         # ユーザーがログインしているかを確認し、必要な情報を提供
+#         context = {
+#             'is_authenticated': request.user.is_authenticated,
+#             'username': request.user.username if request.user.is_authenticated else None,
+#         }
+#         return render(request, self.template_name, context)    
+    
+    
+from django.shortcuts import render
+from django.views import View 
+from formapp.models import Quest  # Questモデルをインポート
+from formapp.forms import QuestModelForm  # QuestModelFormをインポート
+
 class MainView(View):
     """クエスト一覧ページのビュー"""
     template_name = "main.html"
 
     def get(self, request, *args, **kwargs):
-        # ユーザーがログインしているかを確認し、必要な情報を提供
+        # クエストデータを取得
+        quests = Quest.objects.all()
+
+        # 0～46のキーに基づいて都道府県別にクエストを分ける
+        prefectures = {}
+        for quest in quests:
+            # 都道府県のキーを取得
+            prefecture_key = quest.prefecture
+
+            # まだその都道府県のキーが辞書に無ければ、リストを初期化
+            if prefecture_key not in prefectures:
+                prefectures[prefecture_key] = []
+
+            # 都道府県キーに対応するリストにクエストを追加
+            prefectures[prefecture_key].append(quest)
+
+        # ユーザーがログインしているかを確認
         context = {
             'is_authenticated': request.user.is_authenticated,
             'username': request.user.username if request.user.is_authenticated else None,
+            'prefectures': prefectures,  # 都道府県別に分けたクエストデータ
         }
+
         return render(request, self.template_name, context)
+    
+    
 
-def formworldfunction(request):
-          return render(request, 'form.html')
 
-def questformworldfunction(request):
-          return render(request, 'questform.html')
 
+class QuestDetailView(View):
+    """クエスト詳細ページのビュー"""
+    template_name = "questdo.html"
+
+    def get(self, request, *args, **kwargs):
+        # クエストの主キーを取得
+        quest = Quest.objects.get(pk=kwargs['pk'])
+        # 現在のクエストに紐づくお題を取得
+        quest_registers = quest.quest_registers.all()
+        print(quest)
+        
+        # デバッグ用: データ確認
+        print(f"Quest ID: {quest.id}")
+        print(f"Quest Registers: {quest_registers}")
+        
+        # クエスト詳細ページを表示
+        context = {
+            'quest': quest, #クエスト情報
+            'quest_registers': quest_registers,  # お題情報
+        }
+        
+        return render(request, self.template_name, context) 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 def couponformworldfunction(request):
           return render(request, 'coupon.html')
 

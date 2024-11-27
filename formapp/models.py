@@ -19,7 +19,7 @@ class Quest(models.Model):
 # お題登録フォームのモデル
 class QuestRegister(models.Model):
     name = models.CharField(max_length=100)
-    quest_id = models.ForeignKey(Quest, on_delete=models.PROTECT, verbose_name="クエストID",related_name="quest_registers", null=True)
+    quest_id = models.ForeignKey(Quest, on_delete=models.PROTECT, verbose_name="クエストID", related_name="quest_registers", null=True)
     address = models.CharField(max_length=200)
     answer_photo = models.ImageField(upload_to='quest_photos/')
     additional_notes = models.TextField()
