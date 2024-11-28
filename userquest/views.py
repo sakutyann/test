@@ -1,8 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Coupon,UserCoupon
-<<<<<<< HEAD
 from django.contrib.auth.decorators import login_required
-=======
 from django.shortcuts import render
 from .models import PhotoSubmission
 from formapp.models import QuestRegister
@@ -10,7 +8,6 @@ from .utils import get_exif_data, get_geotagging, get_coordinates
 from django.core.files.storage import default_storage
 from PIL import Image
 from django.db.models import Q  # 複数条件を扱うために必要
->>>>>>> 5d29d4c148ee754ff4bbdca8e8a867129026f260
 
 def questnowformworldfunction(request):
           return render(request, 'questnow.html')
