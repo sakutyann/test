@@ -25,10 +25,9 @@ def questgoformworldfunction(request):
     if request.method == 'POST':
         photo = request.FILES['photo']
         temp_path = default_storage.save(photo.name, photo)
-
         try:
             # EXIF情報から緯度・経度を取得
-            image = Image.open(temp_path)
+            image = Image.open("media\\"+temp_path)
             exif_data = get_exif_data(image)
             geotags = get_geotagging(exif_data)
             coordinates = get_coordinates(geotags)
