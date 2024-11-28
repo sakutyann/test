@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+{% load form_filters %}
+
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お題登録画面</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #282c34;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 2px solid #bfa34b;
+      border-radius: 15px;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+      color: #c9c2a5;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      color: #ffd700;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-size: 1.1em;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="file"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #333;
+      color: #ffd700;
+      font-size: 1em;
+      resize: none;
+    }
+
+    .form-group textarea {
+      height: 80px;
+    }
+
+    .notice {
+      font-size: 0.9em;
+      color: #ff5555;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      background-color: #4b3b24;
+      color: #ffd700;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1em;
+      transition: background-color 0.3s;
+    }
+
+    .submit-btn:hover {
+      background-color: #6d5630;
+    }
+
+    .error {
+      color: #ff5555;
+      font-size: 0.9em;
+      text-align: center;
+      margin-top: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>お題登録フォーム</h1>
+    <!-- Quest ID Debug 表示 -->
+    <p>Quest ID: {{ form.initial.quest_id }}</p>
+
+    <form id="questRegisterForm" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <!-- Quest ID 確認 -->
+      <div class="form-group">
+        {{ form.quest_id|add_class:"form-control" }}
+      </div>  
+
+      <!-- お題名 -->
+      <div class="form-group">
+        <label for="{{ form.name.id_for_label }}">名前</label>
+        {{ form.name|add_class:"form-control" }}
+      </div>
+
+      <!-- 場所 -->
+      <div class="form-group">
+        <label for="{{ form.address.id_for_label }}">住所</label>
+        {{ form.address|add_class:"form-control" }}
+      </div>
+
+      <!-- 解答写真 -->
+      <div class="form-group">
+        <label for="{{ form.answer_photo.id_for_label }}">解答写真</label>
+        {{ form.answer_photo|add_class:"form-control" }}
+      </div>
+
+      <!-- お題内意 -->
+      <div class="form-group">
+        <label for="{{ form.additional_notes.id_for_label }}">お題内容</label>
+        {{ form.additional_notes|add_class:"form-control" }}
+      </div>
+
+      <!-- 注意メッセージ -->
+      <p class="notice">※一度登録すると消せませんのでご注意ください</p>
+
+      <button type="submit" class="submit-btn" onclick="submitQuest()">終了</button>
+      <p class="error" id="error-message">すべての項目を正しく入力してください</p>
+
+    </form>
+  </div>
+  
+  <script>
+    function submitQuest() {
+      // フォーム送信時の動作（フォームの検証など）
+      const form = document.getElementById('questRegisterForm');
+    }
+  </script>
+  
+  
+</body>
+</html>

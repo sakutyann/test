@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お題詳細 - 写真アップロード</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #282c34;
+      color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+
+    .content {
+      width: 90%;
+      max-width: 600px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #ffd700;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      font-size: 1.1em;
+      color: #c9c2a5;
+      margin-bottom: 20px;
+    }
+
+    .sample-photo {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    form {
+      background-color: #333;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    label {
+      display: block;
+      font-size: 1em;
+      color: #ffd700;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      background-color: #444;
+      color: #f5f5f5;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #4b3b24;
+      color: #ffd700;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #6d5630;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+    <!-- お題名 -->
+    <h1>お題: 清水寺の写真を撮影</h1>
+
+    <!-- お題の魅力説明 -->
+    <p class="description">清水の舞台から見渡せる絶景を撮影し、京都の風情を感じてみましょう！歴史ある清水寺の魅力を写真に収めてください。</p>
+
+    <!-- サンプル写真 -->
+    {% load static %}
+    <img src="{% static 'images/スクリーンショット_2024-11-09_202438.png' %}" alt="清水寺のサンプル写真" class="sample-photo">
+    
+    
+
+    <!-- 写真アップロードフォーム -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+      <label for="photo">写真をアップロードしてください:</label>
+      <input type="file" id="photo" name="photo" accept="image/*" required>
+
+      <button type="submit">アップロード</button>
+    </form>
+  </div>
+
+</body>
+</html>

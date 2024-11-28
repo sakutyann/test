@@ -102,6 +102,18 @@
       font-size: 1em;
       color: #ffd700;
     }
+
+
+    .info-item input[type="password"]::placeholder {
+      color: rgba(255, 215, 0, 1); /* 明るいゴールド色 */
+      font-style: italic;
+      font-size: 1.1em;
+    }
+
+    .info-item input[type="password"]:focus {
+      border-color: #ffd700; /* フォーカス時に明るく */
+      outline: none;
+    }
   </style>
 </head>
 <body>
@@ -109,42 +121,117 @@
     <h1>アカウント情報</h1>
     <div class="info-item">
       <label for="userID">ユーザー名</label>
-      <input type="text" id="username" value="{{ username }}" readonly>
-      <button class="change-btn" onclick="changeInfo('userID')">変更</button>
+      <input type="text" id="username" value="{{ username }}" data-original="{{ username }}" readonly>
+      <button class="change-btn" onclick="changeInfo('username',this)">変更</button>
     </div>
-
     <div class="info-item">
       <label for="email">メールアドレス</label>
-      <input type="email" id="email" value="{{ email }}">
-      <button class="change-btn" onclick="changeInfo('email')">変更</button>
+      <input type="email" id="email" value="{{ email }}"  data-original="{{ email }}" readonly>
+      <button class="change-btn" onclick="changeInfo('email',this)">変更</button>
     </div>
     <div class="info-item">
       <label for="password">パスワード</label>
-      <input type="password" id="password" value="password">
-      <button class="change-btn" onclick="changeInfo('password')">変更</button>
+      <input type="password" id="password" value="" placeholder="Please enter new password" readonly>
+      <button class="change-btn" onclick="changeInfo('password',this)">変更</button>
     </div>
-    <a href="#" class="back-btn" onclick="goBack()">戻る</a>
-    
+    <a href="{% url 'team:main' %}" class="back-btn" onclick="goBack()">戻る</a>
+    <button class="back-btn" id="saveBtn" style="display:none;" onclick="saveChanges()">保存</button><!-- 保存ボタンは初め非表示 -->
     <!-- メッセージ表示用の要素 -->
     <p id="message" class="message"></p>
   </div>
 
   <script>
-    function changeInfo(field) {
-      const inputField = document.getElementById(field);
-      const message = document.getElementById("message");
+    function changeInfo(inputId,buttonElement){
+      //指定されたIDの入力フィールドを取得
+      const inputElement = document.getElementById(inputId);
+      if (buttonElement.textContent === "変更"){
+        if (inputElement){
+          inputElement.removeAttribute("readonly");
+          buttonElement.textContent = "完了";
+        }
 
-      if (inputField.readOnly) {
-        inputField.readOnly = false;
-        inputField.focus();
-      } else {
-        inputField.readOnly = true;
-        message.textContent = field + 'が更新されました！';
+        if (inputId === "password") {
+          inputElement.placeholder = "Please enter new password";
+        } 
+      } else if (buttonElement.textContent  === "完了"){
+        if (inputElement){
+          inputElement.setAttribute("readonly",true);
+
+          buttonElement.textContent = "変更";
+          document.getElementById('saveBtn').style.display = 'inline-block';
+        }
       }
     }
 
-    function goBack() {
-      window.history.back();
+    function getCookie(name){
+      let cookieValue = null;
+      if (document.cookie && document.cookie !==''){
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++){
+          const cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1)===(name + '=')){
+            cookieValue = decodeURIComponent(cookie.substring(name.length+ 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+
+    function saveChanges() {
+      const usernameInput = document.getElementById('username');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+    
+      const originalUsername = usernameInput.getAttribute('data-original');
+      const originalEmail = emailInput.getAttribute('data-original');
+    
+      const username = usernameInput.value.trim();
+      const email = emailInput.value.trim();
+      const password = passwordInput.value.trim(); // パスワードは未入力なら無視される
+    
+      // 入力が変更されているか確認
+      if (
+        username === originalUsername &&
+        email === originalEmail &&
+        !password // パスワードが空なら変更なし
+      ) {
+        alert('変更はありません');
+        return;
+      }
+    
+      const data = { username, email };
+      if (password){
+        data.password = password;
+      }
+    
+      fetch('/update-profile/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCookie('csrftoken'),
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            alert('変更内容が保存されました');
+            document.getElementById('saveBtn').style.display = 'none';
+    
+            // 元の値を更新
+            usernameInput.setAttribute('data-original', username);
+            emailInput.setAttribute('data-original', email);
+            passwordInput.value = "";
+            passwordInput.placeholder = "Please enter new password"
+          } else {
+            alert(`保存に失敗しました: ${data.error}`);
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          alert('エラーが発生しました');
+        });
     }
   </script>
 </body>

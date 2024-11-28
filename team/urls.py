@@ -1,39 +1,26 @@
 from django.urls import path
 from . import views
 from .views import MainView
-
+from team.views import QuestDetailView
 
 
 app_name = 'team'
 
 
-urlpatterns = [path('login/', views.loginworldfunction),
-              #  main
-               path('main/', MainView.as_view(), name="main"),
-               path('account/', views.accountworldfunction),
-               path('logout/', views.logoutworldfunction),
-               path('logoutok/', views.logoutokworldfunction),
-               #クエスト依頼フォーム
-               path('form/', views.formworldfunction,name='form'),
-               #お題登録フォーム
-               path('questform/', views.questformworldfunction,name='questform'),
+urlpatterns = [path('', views.title_view, name='title'),#タイトル画面                
+               path('main/', MainView.as_view(), name="main"),#main画面(クエスト一覧)
+               path('quest/<int:pk>/', views.QuestDetailView.as_view(), name='quest_detail'),#クエスト詳細画面
+               path('questdo/', views.QuestDetailView.as_view(), name='quest_detail'),#クエスト詳細画面
                
+
                path('coupon/', views.couponformworldfunction, name='coupon'),
                path('couponuse/', views.couponuseformworldfunction),
                path('couponend/', views.couponendformworldfunction),
                path('couponpast/', views.couponpastformworldfunction),
-               path('tittle/', views.tittleformworldfunction),
+           
                path('questlook/', views.questlookformworldfunction),
                path('couponnot/', views.couponnotformworldfunction),
                path('questok/', views.questokformworldfunction),
                path('quester/', views.questerformworldfunction),
                path('newaccount/', views.newaccountformworldfunction),
-              #  進行中クエスト
-               path('questnow/', views.questnowformworldfunction, name='questnow'),
-               path('questnot/', views.questnotformworldfunction),
-               path('questdo/', views.questdoformworldfunction),
-               path('questgo/', views.questgoformworldfunction),
-               path('questyes/', views.questyesformworldfunction),
-               path('questout/', views.questoutformworldfunction),
-               path('questfin/', views.questfinformworldfunction),
-               ]
+             ]

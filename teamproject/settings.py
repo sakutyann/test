@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os  # osモジュールのインポート
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,11 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    #ここから追加
     'team',
-    # accountsの追加
     'accounts.apps.AccountsConfig',
-    
+    'userquest',
+    'formapp',
+   
 ]
 
 MIDDLEWARE = [
@@ -80,6 +81,8 @@ WSGI_APPLICATION = 'teamproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+
+# Mysql
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # MySQLを使用
@@ -88,6 +91,7 @@ DATABASES = {
         'PASSWORD': 'Djangodayo1414+',  # MySQLのパスワード
         'HOST': '127.0.0.1',  # ローカルホスト（ローカルMySQLに接続）
         'PORT': '3306',  # MySQLのポート（通常は3306）
+        
     }
 }
 
@@ -139,3 +143,9 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # ログインが必要なページへアクセスした際のリダイレクト先
 LOGIN_URL = 'accounts:main'  
+
+# アップロードされたメディアファイルのURL
+MEDIA_URL = '/media/'  
+
+# アップロードされたファイルを保存するディレクトリのパス
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  
