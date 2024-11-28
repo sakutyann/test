@@ -42,10 +42,10 @@ def questgoformworldfunction(request):
                 )
 
                 # 緯度・経度の範囲を計算
-                latitude_min = latitude - 1/10
-                latitude_max = latitude + 1/10
-                longitude_min = longitude - 1/10
-                longitude_max = longitude + 1/10
+                latitude_min = latitude - 1/70
+                latitude_max = latitude + 1/70
+                longitude_min = longitude - 1/70
+                longitude_max = longitude + 1/70
 
                 # 位置情報管理アプリのデータと照合（範囲内で検索）
                 if QuestRegister.objects.filter(
