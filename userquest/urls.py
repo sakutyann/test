@@ -15,6 +15,5 @@ urlpatterns = [path('questnow/', views.questnowformworldfunction, name='questnow
                path('coupons/<int:coupon_id>/', views.coupon_detail, name='coupon_detail'),  # クーポン詳細
                path('coupons/used/', views.used_coupons, name='used_coupons'),  # 使用済みクーポン
                path('coupons/complete/', views.coupon_complete, name='coupon_complete'),  # クーポン使用完了
-
                ]
 # Create your tests here.
