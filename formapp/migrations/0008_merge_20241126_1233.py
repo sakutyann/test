@@ -6,7 +6,6 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('formapp', '0004_questregister_latitude_questregister_longitude'),
         ('formapp', '0007_questregister_latitude_questregister_longitude'),
     ]
 
