@@ -3,6 +3,7 @@ from django.contrib.auth.models import User  # ユーザー情報をリンクす
 from formapp.models import Quest
 from django.conf import settings
 
+# userquest/models.py
 
 class Coupon(models.Model):
     coupon_id = models.AutoField(primary_key=True, verbose_name="クーポンID")
@@ -25,12 +26,52 @@ class UserCoupon(models.Model):
         return f"Coupon {self.coupon_id} for User {self.user_account_id}"
 
 
-
-
-from django.db import models
 class PhotoSubmission(models.Model):
     photo = models.ImageField(upload_to='photos/')
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 # Create your models here.
+
+
+# お題テーブル
+class QuestSubMission(models.Model):
+    quest_register = models.ForeignKey(
+        'formapp.QuestRegister',  # アプリ名とモデル名を指定
+        on_delete=models.CASCADE,
+        verbose_name="クエスト詳細"
+    )
+    completed = models.BooleanField(default=False, verbose_name="完了判定")
+
+    def __str__(self):
+        return f"{self.quest_register.name} (Completed: {self.completed})"
+
+# クエストテーブル
+class UserQuestNow(models.Model):
+    # ユーザーアカウントID
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, 
+        on_delete=models.PROTECT, 
+        verbose_name="ユーザー"
+    )
+    # クエストID
+    quest = models.ForeignKey(
+        'formapp.Quest', 
+        on_delete=models.PROTECT, 
+        verbose_name="クエスト"
+    )
+    # 完了判定
+    completed = models.BooleanField(default=False, verbose_name="クエスト完了判定")
+
+    def __str__(self):
+        return f"User: {self.user}, Quest: {self.quest} (Completed: {self.completed})"
+
+    def check_completion(self):
+        """
+        全てのサブミッションが完了していれば、このクエストも完了にする。
+        """
+        all_completed = self.quest.submissions.all().filter(completed=False).exists() == False
+        if all_completed:
+            self.completed = True
+            self.save()
+

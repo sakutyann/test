@@ -21,18 +21,21 @@ def questdoformworldfunction(request):
 def questgoformworldfunction(request):
           return render(request, 'questgo.html')
 
-
+# お題写真アップロード画面
 def questgoformworldfunction(request):
     if request.method == 'POST':
         photo = request.FILES['photo']
         temp_path = default_storage.save(photo.name, photo)
+        print('if文クリア')
         try:
+            print('try内部侵入')
             # EXIF情報から緯度・経度を取得
             image = Image.open("media\\"+temp_path)
             exif_data = get_exif_data(image)
             geotags = get_geotagging(exif_data)
             coordinates = get_coordinates(geotags)
 
+            print('iamge:',image,',exif_data:',exif_data,',geotags:',geotags,',coordinates:',coordinates)
             if coordinates and len(coordinates) == 2:  # 緯度と経度の両方が存在する場合のみ
                 latitude, longitude = coordinates
                 PhotoSubmission.objects.create(
@@ -53,15 +56,19 @@ def questgoformworldfunction(request):
                     Q(longitude__gte=longitude_min, longitude__lte=longitude_max)
                 ).exists():
                     # 成功した場合
+                    print('判定：成功')
                     return render(request, 'questyes.html', {'latitude': latitude, 'longitude': longitude})
                 else:
                     # 照合失敗
+                    print('判定：失敗')
                     return render(request, 'questout.html', {'latitude': latitude, 'longitude': longitude})
             else:
                 # 位置情報が存在しない場合
+                print('判定：位置情報なし')
                 return render(request, 'questout.html', {'result': '位置情報が含まれていません。'})
         except Exception as e:
             # 例外発生時も失敗判定
+            print('判定：例外発生')
             return render(request, 'questout.html', {'result': f'エラーが発生しました: {e}'})
 
     return render(request, 'questgo.html')

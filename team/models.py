@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 
+# team/models.py
 
 #クエスト依頼フォーム
 class QuestRequest(models.Model):
