@@ -14,13 +14,13 @@ urlpatterns = [path('', views.title_view, name='title'),#タイトル画面
                
 
                path('coupon/', views.couponformworldfunction, name='coupon'),
-               path('couponuse/', views.couponuseformworldfunction),
-               path('couponend/', views.couponendformworldfunction),
-               path('couponpast/', views.couponpastformworldfunction),
+              #  path('couponuse/', views.couponuseformworldfunction),
+              #  path('couponend/', views.couponendformworldfunction),
+              #  path('couponpast/', views.couponpastformworldfunction),
            
-               path('questlook/', views.questlookformworldfunction),
-               path('couponnot/', views.couponnotformworldfunction),
-               path('questok/', views.questokformworldfunction),
-               path('quester/', views.questerformworldfunction),
-               path('newaccount/', views.newaccountformworldfunction),
+              #  path('questlook/', views.questlookformworldfunction),
+              #  path('couponnot/', views.couponnotformworldfunction),
+              #  path('questok/', views.questokformworldfunction),
+              #  path('quester/', views.questerformworldfunction),
+              #  path('newaccount/', views.newaccountformworldfunction),
              ]

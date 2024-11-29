@@ -142,7 +142,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # ログインが必要なページへアクセスした際のリダイレクト先
-LOGIN_URL = 'accounts:main'  
+LOGIN_URL = '/accounts/signup'  
 
 # アップロードされたメディアファイルのURL
 MEDIA_URL = '/media/'  

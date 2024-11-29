@@ -7,6 +7,7 @@ from .utils import get_exif_data, get_geotagging, get_coordinates
 from django.core.files.storage import default_storage
 from PIL import Image
 from django.db.models import Q  # 複数条件を扱うために必要
+from django.contrib.auth.decorators import login_required
 
 def questnowformworldfunction(request):
           return render(request, 'questnow.html')
@@ -14,13 +15,13 @@ def questnowformworldfunction(request):
 def questnotformworldfunction(request):
           return render(request, 'questnot.html')
 
-def questdoformworldfunction(request):
-          return render(request, 'questdo.html')
+# def questdoformworldfunction(request):
+#           return render(request, 'questdo.html')
 
-def questgoformworldfunction(request):
-          return render(request, 'questgo.html')
+# def questgoformworldfunction(request):
+#           return render(request, 'questgo.html')
 
-
+@login_required
 def questgoformworldfunction(request):
     if request.method == 'POST':
         photo = request.FILES['photo']
