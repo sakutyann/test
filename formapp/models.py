@@ -10,7 +10,7 @@ class Quest(models.Model):
     deadline = models.DateField()
     requester = models.CharField(max_length=100)
     prefecture = models.CharField(max_length=100)
-    reward = models.CharField(max_length=3, default="1")
+    reward = models.CharField(max_length=3, default=1)
     payment = models.CharField(max_length=100)
     
     def __str__(self):

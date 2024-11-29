@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Coupon,UserCoupon
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .models import PhotoSubmission
 from formapp.models import QuestRegister
@@ -26,10 +27,9 @@ def questgoformworldfunction(request):
     if request.method == 'POST':
         photo = request.FILES['photo']
         temp_path = default_storage.save(photo.name, photo)
-
         try:
             # EXIF情報から緯度・経度を取得
-            image = Image.open(temp_path)
+            image = Image.open("media\\"+temp_path)
             exif_data = get_exif_data(image)
             geotags = get_geotagging(exif_data)
             coordinates = get_coordinates(geotags)
@@ -43,10 +43,10 @@ def questgoformworldfunction(request):
                 )
 
                 # 緯度・経度の範囲を計算
-                latitude_min = latitude - 1/10
-                latitude_max = latitude + 1/10
-                longitude_min = longitude - 1/10
-                longitude_max = longitude + 1/10
+                latitude_min = latitude - 1/70
+                latitude_max = latitude + 1/70
+                longitude_min = longitude - 1/70
+                longitude_max = longitude + 1/70
 
                 # 位置情報管理アプリのデータと照合（範囲内で検索）
                 if QuestRegister.objects.filter(
@@ -78,8 +78,19 @@ def questoutformworldfunction(request):
 def questfinformworldfunction(request):
           return render(request, 'questfin.html')
 
+@login_required
 def coupon_list(request):
-    coupons = Coupon.objects.filter(status=False)  # 未使用クーポン
+    user_coupons = UserCoupon.objects.filter(user_account_id=request.user,
+                                             coupon_status=0)  # 未使用クーポン
+    
+    coupons = [
+        {
+            'id': user_coupon.coupon_id.coupon_id,
+            'name':user_coupon.coupon_id.coupon_description,
+        }
+        for user_coupon in user_coupons
+    ]
+    print(coupons)
     return render(request, 'coupon.html', {'coupons': coupons})
 
 def coupon_detail(request, coupon_id):

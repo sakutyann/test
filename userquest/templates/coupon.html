@@ -88,48 +88,28 @@
 
   <div class="container">
     <h1>クーポン一覧</h1>
-
-    <div id="couponList"></div>  <!-- クーポンリストをここに追加 -->
-
+    {% if coupons %}
+      <div id="couponList">  <!-- クーポンリストをここに追加 -->
+        {% for coupon in coupons %}
+          <div class="coupon" onclick="goToCouponDetail('{{ coupon.id }}')">
+            <span>{{ coupon.name }}</span>
+           <span>&gt;</span>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="no-coupons">クーポンはありません</p>
+    {% endif %}
   </div>
-
   <button class="used-coupons-btn" onclick="goToUsedCoupons()">使用済みクーポン</button>
 
   <script>
-    // クーポンのデータ
-    const coupons = [
-      //{ name: '5% OFF クーポン (テスト用 1)', id: '5%OFF Test Coupon 1' },
-      //{ name: '5% OFF クーポン (テスト用 2)', id: '5%OFF Test Coupon 2' },
-      // クーポンがない場合は空配列にする
-    ];
-
-    const couponList = document.getElementById('couponList');
-
-    // クーポンがある場合、リストを作成、ない場合はメッセージ表示
-    if (coupons.length > 0) {
-      coupons.forEach(coupon => {
-        const couponDiv = document.createElement('div');
-        couponDiv.classList.add('coupon');
-        couponDiv.setAttribute('onclick', `goToCouponDetail('${coupon.id}')`);
-        couponDiv.innerHTML = `
-          <span>${coupon.name}</span>
-          <span>&gt;</span>
-        `;
-        couponList.appendChild(couponDiv);
-      });
-    } else {
-      couponList.innerHTML = `<p class="no-coupons">クーポンはありません</p>`;
-    }
-
-    function goToCouponDetail(couponId) {
-      // クーポン詳細画面へ遷移
-      alert(`クーポン詳細: ${couponId}`);
-    }
-
-    function goToUsedCoupons() {
-      // 使用済みクーポンのページへ遷移
-      alert('使用済みクーポンページへ');
-    }
+     function goToCouponDetail(couponId){
+      window.location.href = `/coupon/${couponId}/detail/`;
+     }
+     function goToUsedCoupons(){
+      window.location.href = `/used-coupons/`;
+     }
   </script>
 
 </body>
