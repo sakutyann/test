@@ -66,9 +66,24 @@ class QuestDetailView(View):
         quest_registers = quest.quest_registers.all()
         print(quest)
         
+         # 報酬IDを文字列に変換
+        reward_mapping = {
+            1: "3%OFF",
+            2: "5%OFF",
+            3: "10%OFF",
+        }
+        try:
+            # `quest.reward`を整数に変換してマッピングを取得
+            reward_key = int(quest.reward)  # 型変換が必要な場合
+            quest.reward_display = reward_mapping.get(reward_key, "不明")
+        except (ValueError, TypeError):
+            # 型変換エラーや`None`の場合の対策
+            quest.reward_display = "不明"
+        
         # デバッグ用: データ確認
         print(f"Quest ID: {quest.id}")
         print(f"Quest Registers: {quest_registers}")
+        print(f"Quest Reward (display): {quest.reward}")
         
         # クエスト詳細ページを表示
         context = {

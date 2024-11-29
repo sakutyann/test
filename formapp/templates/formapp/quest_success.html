@@ -74,8 +74,11 @@
     <h1>クエスト発注完了</h1>
     <p class="message">クエストの発注が正常に完了しました。</p>
     <div class="button-group">
+      <input type="button" class="button" onclick="window.history.back();" value="お題登録を続ける">
       <a href={% url "team:main" %}><button class="button">クエスト一覧に戻る</button></a>
     </div>
   </div>
+  <scripts>
+
 </body>
 </html>

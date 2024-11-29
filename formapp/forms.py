@@ -1,6 +1,7 @@
 from django import forms
 from .models import Quest, QuestRegister
 from django.core.exceptions import ValidationError
+from django.utils.timezone import now  # 現在日時を取得
 
 # クエスト依頼
 class QuestModelForm(forms.ModelForm):
@@ -72,7 +73,7 @@ class QuestModelForm(forms.ModelForm):
     # クエスト内容
     description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
     # 期限
-    deadline = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}))
+    deadline = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'min': now().date().isoformat()}))
     # 依頼者
     requester = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
     # 都道府県
@@ -94,6 +95,12 @@ class QuestModelForm(forms.ModelForm):
         ],
         widget=forms.Select(attrs={'class': 'form-control', 'id': 'payment'})
     )
+    
+    def clean_deadline(self):
+        deadline = self.cleaned_data.get('deadline')
+        if deadline and deadline < now().date():  # 日付だけ比較
+            raise ValidationError("期限には今日以降の日付を選択してください。")
+        return deadline
     
     
     

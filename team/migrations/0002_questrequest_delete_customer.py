@@ -10,19 +10,19 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='QuestRequest',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=100)),
-                ('description', models.TextField()),
-                ('deadline', models.DateField()),
-                ('requester', models.CharField(max_length=100)),
-                ('prefecture', models.CharField(max_length=50)),
-                ('payment', models.CharField(max_length=50)),
-            ],
-        ),
-        migrations.DeleteModel(
-            name='Customer',
-        ),
+        # migrations.CreateModel(
+        #     name='QuestRequest',
+        #     fields=[
+        #         ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+        #         ('title', models.CharField(max_length=100)),
+        #         ('description', models.TextField()),
+        #         ('deadline', models.DateField()),
+        #         ('requester', models.CharField(max_length=100)),
+        #         ('prefecture', models.CharField(max_length=50)),
+        #         ('payment', models.CharField(max_length=50)),
+        #     ],
+        # ),
+        # migrations.DeleteModel(
+        #     name='Customer',
+        # ),
     ]

@@ -9,15 +9,3 @@ class Migration(migrations.Migration):
         ('formapp', '0003_questregister_alter_quest_payment_and_more'),
     ]
 
-    operations = [
-        migrations.AddField(
-            model_name='questregister',
-            name='latitude',
-            field=models.FloatField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='questregister',
-            name='longitude',
-            field=models.FloatField(blank=True, null=True),
-        ),
-    ]
