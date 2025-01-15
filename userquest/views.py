@@ -9,6 +9,12 @@ from django.core.files.storage import default_storage
 from PIL import Image
 from django.db.models import Q  # 複数条件を扱うために必要
 from django.contrib.auth.decorators import login_required
+from django.views import View 
+from formapp.models import Quest  # Questモデルをインポート
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
+
 
 def questnowformworldfunction(request):
           return render(request, 'questnow.html')
@@ -23,22 +29,49 @@ def questnotformworldfunction(request):
 # def questgoformworldfunction(request):
 #           return render(request, 'questgo.html')
 
-@login_required
-def questgoformworldfunction(request):
-    if request.method == 'POST':
-        photo = request.FILES['photo']
-        temp_path = default_storage.save(photo.name, photo)
-        print('if文クリア')
-        try:
-            print('try内部侵入')
-            # EXIF情報から緯度・経度を取得
-            image = Image.open("media\\"+temp_path)
-            exif_data = get_exif_data(image)
-            geotags = get_geotagging(exif_data)
-            coordinates = get_coordinates(geotags)
+@method_decorator(login_required, name='dispatch')
+class QuestGoView(View):
+    template_names_yes = "questyes.html"
+    template_names_out = "questout.html"
+    
+    def get_context_data(self, **kwargs):
+       # クエストの主キーを取得
+        quest = Quest.objects.get(pk=kwargs['pk'])
+        # 現在のクエストに紐づくお題を取得
+        quest_registers = quest.quest_registers.all()
+        print(quest_registers)
+        # 共通のコンテキストを返す
+        return {
+            'quest': quest,  # クエスト情報
+            'quest_registers': quest_registers,  # お題情報
+        }
+        
+    # getメソッド
+    def get(self, request, *args, **kwargs):
+        # contextデータを取得
+        context = self.get_context_data(**kwargs)
+        return render(request, "questgo.html", context)
+    
+    # postメソッド
+    def post(self, request, *args, **kwargs):
+          # contextデータを取得
+          context = self.get_context_data(**kwargs)
+          photo = request.FILES['photo']
+          if not photo:
+            return render(request, self.template_names_out, {'result': '写真がアップロードされていません。'})
+          
+          temp_path = default_storage.save(photo.name, photo)
+          print('if文クリア')
+          try:
+              print('try内部侵入')
+              # EXIF情報から緯度・経度を取得
+              image = Image.open("media\\"+temp_path)
+              exif_data = get_exif_data(image)
+              geotags = get_geotagging(exif_data)
+              coordinates = get_coordinates(geotags)
 
-            print('iamge:',image,',exif_data:',exif_data,',geotags:',geotags,',coordinates:',coordinates)
-            if coordinates and len(coordinates) == 2:  # 緯度と経度の両方が存在する場合のみ
+              print('iamge:',image,',exif_data:',exif_data,',geotags:',geotags,',coordinates:',coordinates)
+              if coordinates and len(coordinates) == 2:  # 緯度と経度の両方が存在する場合のみ
                 latitude, longitude = coordinates
                 PhotoSubmission.objects.create(
                     photo=photo,
@@ -56,35 +89,68 @@ def questgoformworldfunction(request):
                 if QuestRegister.objects.filter(
                     Q(latitude__gte=latitude_min, latitude__lte=latitude_max) &
                     Q(longitude__gte=longitude_min, longitude__lte=longitude_max)
-                ).exists():
+                    ).exists():
                     # 成功した場合
                     print('判定：成功')
-                    return render(request, 'questyes.html', {'latitude': latitude, 'longitude': longitude})
+                    print(request, latitude, longitude, context)
+                    return render(request, self.template_names_yes,context)
                 else:
                     # 照合失敗
                     print('判定：失敗')
-                    return render(request, 'questout.html', {'latitude': latitude, 'longitude': longitude})
-            else:
+                    return render(request, self.template_names_out, {'latitude': latitude, 'longitude': longitude, 'context': context})
+              else:
                 # 位置情報が存在しない場合
                 print('判定：位置情報なし')
-                return render(request, 'questout.html', {'result': '位置情報が含まれていません。'})
-        except Exception as e:
+                return render(request, self.template_names_out, {'result': '位置情報が含まれていません。', 'context':context})
+          except Exception as e:
             # 例外発生時も失敗判定
             print('判定：例外発生')
-            return render(request, 'questout.html', {'result': f'エラーが発生しました: {e}'})
-
-    return render(request, 'questgo.html')
+            return render(request,self.template_names_out, {'result': f'エラーが発生しました: {e}', 'context':context})
 
 
-def questyesformworldfunction(request):
-          return render(request, 'questyes.html')
+class QuestYesView(View):
+    """クエスト挑戦ページのビュー"""
+    template_name = "questyes.html"
+    def get(self, request, *args, **kwargs):
+        # クエストの主キーを取得
+        quest = Quest.objects.get(pk=kwargs['pk'])
+        # 現在のクエストに紐づくお題を取得
+        quest_registers = quest.quest_registers.all()
+        print(quest)
 
-def questoutformworldfunction(request):
-          return render(request, 'questout.html')
+        # クエスト詳細ページを表示
+        context = {
+            'quest': quest, #クエスト情報
+            'quest_registers': quest_registers,  # お題情報
+        }
+        return render(request, self.template_name, context) 
+   
+   
+class QuestOutView(View):
+  template_name = "questout.html"
+  def get(self, request, *args, **kwargs):
+    quest = Quest.objects.get(pk=kwargs['pk'])
+    quest_registers = quest.quest_resigters.all()
+    print(quest)
+    context = {
+        'quest': quest, #クエスト情報
+        'quest_registers': quest_registers,  # お題情報
+        }
+    return render(request, self.template_name, context) 
+
+class QuestFinView(View):
+  template_name = "questfin.html"
+  def get(self, request, *args, **kwargs):
+    quest = Quest.objects.get(pk=kwargs['pk'])
+    quest_registers = quest.quest_resigters.all()
+    print(quest)
+    context = {
+        'quest': quest, #クエスト情報
+        'quest_registers': quest_registers,  # お題情報
+        }
+    return render(request, self.template_name, context) 
 
 
-def questfinformworldfunction(request):
-          return render(request, 'questfin.html')
 
 @login_required
 def coupon_list(request):
@@ -113,6 +179,12 @@ def used_coupons(request):
 def coupon_complete(request):
     # 完了メッセージの表示だけの場合
     return render(request, 'couponend.html')
+
+# クエスト挑戦画面
+def quest_challenge_view(request):
+  return render(request, 'quest_challenge.html')
+
+
 
 
 # Create your views here.

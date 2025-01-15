@@ -112,7 +112,7 @@
       font-style: italic;
     }
 
- /* ナビゲーションバー */
+    /* ナビゲーションバー */
     .nav-bar {
       position: fixed;
       bottom: 0;
@@ -212,13 +212,18 @@
 <div class="content">
 <h1>クエスト一覧</h1>
     
+
+
+{% comment %}今は動いていない {% endcomment %}
 <!-- 北海道・東北地方 -->
     <div class="region"><h2>北海道・東北地方</h2>
 
       <div class="prefecture">
-          <h3>北海道</h3>
+          <h3>北海道d</h3>
+          <a class="quest-link" href="{% url 'team:quest_challenge' %}"></a>
+
           {% for quest in prefectures.0 %}
-              <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+              <a class="quest-link" href="{% url 'team:quest_challenge' pk=quest.pk %}">{{ quest.title }}</a>
           {% empty %}
               <p class="no-quest">クエストがありません</p>
           {% endfor %}

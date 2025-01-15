@@ -82,10 +82,39 @@
       font-size: 1.2em;
       margin-top: 20px;
     }
+
+    /* ナビゲーションバー */
+    .nav-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: space-around;
+      padding: 15px 0;
+      box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.4);
+    }
+    .nav-bar a {
+      color: #ffd700;
+      font-size: 1.2em;
+      text-decoration: none;
+      text-align: center;
+      flex: 1;
+      padding: 10px;
+      transition: background-color 0.3s, transform 0.3s;
+      border-radius: 5px;
+    }
+
+    .nav-bar a:hover {
+      background-color: #444;
+      transform: scale(1.1);
+    }
+
   </style>
 </head>
 <body>
-
+  
   <div class="container">
     <h1>クーポン一覧</h1>
     {% if coupons %}
@@ -111,6 +140,23 @@
       window.location.href = `/used-coupons/`;
      }
   </script>
+
+
+  <!-- ナビゲーションバー -->
+  <nav class="nav-bar" id="navBar">
+    {% if request.user.is_authenticated %}     {% comment %} 変更 {% endcomment %}
+
+      <a href="{% url 'accounts:account_info' %}" class="nav-link">アカウント情報</a>
+      <a href="{% url 'team:main' %}" class="nav-link">クエスト一覧</a>
+      <a href="{% url 'team:coupon' %}" class="nav-link">クーポン一覧</a>
+      <a href="{% url 'userquest:questnow' %}" class="nav-link">進行中クエスト</a>
+      <a href="{% url 'accounts:logout_check' %}" class="nav-link">ログアウト</a>
+
+    {% else %}
+      <a href="{% url 'formapp:quest_form' %}" class="nav-link">クエスト依頼</a>
+      <a href="{% url 'accounts:signup' %}" class="nav-link">新規アカウント登録<br>ログイン</a>
+    {% endif %}
+  </nav>
 
 </body>
 </html>

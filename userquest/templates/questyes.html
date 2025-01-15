@@ -148,8 +148,8 @@
     <h1>成功！</h1>
     
 
-    <form action="{% url 'team:main' %}">
-      <button type="submit">クエストに戻る</button>
+    <form action="{% url 'team:quest_detail' pk=quest.pk%}">
+      <button class="button">クエストに戻る</button>
     </form>
   </div>
 

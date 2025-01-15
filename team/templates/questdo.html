@@ -125,13 +125,12 @@
     <p class="description"><strong>依頼者:</strong>{{ quest.requester }}</p>
     <p class="description"><strong>報酬:</strong>{{ quest.reward_display }}</p>
 
-    <a href="{% url 'userquest:questgo' %}" class="photo-link">
-      <div class="photo-item">
+    <div class="photo-item">
     
 
     <!-- お題詳細 -->
     {% for register in quest_registers %}
-      <a href="{% url 'userquest:questgo' %}" class="photo-link">
+      <a href="{% url 'userquest:questgo' pk=quest.pk %}" class="photo-link">
         <div class="photo-item">
           <h2>{{ forloop.counter }}. {{ register.name }}</h2>
           <p>{{ register.additional_notes }}</p>
@@ -143,7 +142,7 @@
 
     <!-- 完了ボタンと戻るボタン -->
     <div class="buttons">
-      <a href="{% url 'userquest:questfin' %}"class="button complete-button">ご褒美</a>
+      <a href="{% url 'userquest:questfin'%}"class="button complete-button">ご褒美</a>
       <!-- <a href="{% url 'userquest:questnow' %}" class="button back-button">戻る</a> -->
       <button class="button back-button" onclick="cancelLogout()">戻る</button>
 

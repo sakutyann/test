@@ -112,7 +112,7 @@
       font-style: italic;
     }
 
- /* ナビゲーションバー */
+    /* ナビゲーションバー */
     .nav-bar {
       position: fixed;
       bottom: 0;
@@ -174,35 +174,6 @@
       background-color: #ffcc00;
     }
     
-    /* ナビゲーションバーのスタイル */
-    .nav-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
-      display: flex;
-      justify-content: space-around;
-      padding: 15px 0;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
-      z-index: 10;
-    }
-
-    .nav-bar a {
-      color: #ffd700;
-      font-size: 1.2em;
-      text-decoration: none;
-      text-align: center;
-      flex: 1;
-      padding: 10px;
-      transition: background-color 0.3s, transform 0.3s;
-      border-radius: 5px;
-    }
-
-    .nav-bar a:hover {
-      background-color: #444;
-      transform: scale(1.1);
-    }
 
 
   </style>
@@ -211,14 +182,14 @@
 <!-- メインコンテンツ -->
 <div class="content">
 <h1>クエスト一覧</h1>
-    
+   
 <!-- 北海道・東北地方 -->
     <div class="region" data-region="hokkaido-tohoku"><h2>北海道・東北地方</h2>
 
       <div class="prefecture">
           <h3>北海道</h3>
           {% for quest in prefectures.0 %}
-              <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+              <a class="quest-link" href="{% url 'team:quest_challenge' pk=quest.pk %}">{{ quest.title }}</a>
           {% empty %}
               <p class="no-quest">クエストがありません</p>
           {% endfor %}
@@ -500,7 +471,10 @@
         {% endfor %}
       </div>
 
+    </div>
+
 <!-- 中国地方 -->
+    <div class="region" data-region="tyugoku"><h2>中国地方</h2>
       <div class="prefecture"><h3>鳥取県</h3>
         
         {% for quest in prefectures.30 %}
@@ -663,15 +637,16 @@
         {% endfor %}
       </div>
 
-  </div>
+    </div>
 
-  <!-- ナビゲーションバー -->
+</div>
+<!-- ナビゲーションバー -->
   <nav class="nav-bar" id="navBar">
     {% if request.user.is_authenticated %}     {% comment %} 変更 {% endcomment %}
 
       <a href="{% url 'accounts:account_info' %}" class="nav-link">アカウント情報</a>
       <a href="{% url 'team:main' %}" class="nav-link">クエスト一覧</a>
-      <a href="{% url 'userquest:coupon' %}" class="nav-link">クーポン一覧</a>
+      <a href="{% url 'team:coupon' %}" class="nav-link">クーポン一覧</a>
       <a href="{% url 'userquest:questnow' %}" class="nav-link">進行中クエスト</a>
       <a href="{% url 'accounts:logout_check' %}" class="nav-link">ログアウト</a>
 

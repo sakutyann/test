@@ -63,6 +63,7 @@ class QuestDetailView(View):
             quest.reward_display = "不明"
         
         # デバッグ用: データ確認
+        print('do')
         print(f"Quest ID: {quest.id}")
         print(f"Quest Registers: {quest_registers}")
         print(f"Quest Reward (display): {quest.reward}")
@@ -87,11 +88,48 @@ def couponformworldfunction(request):
           return render(request, 'coupon.html')
 
 
-   
+# クエスト挑戦画面
+class QuestChallengeView(View):
+    """クエスト挑戦ページのビュー"""
+    template_name = "quest_challenge.html"
+    def get(self, request, *args, **kwargs):
+        # クエストの主キーを取得
+        quest = Quest.objects.get(pk=kwargs['pk'])
+        # 現在のクエストに紐づくお題を取得
+        quest_registers = quest.quest_registers.all()
+        print(quest)
+
+         # 報酬IDを文字列に変換
+        reward_mapping = {
+            1: "3%OFF",
+            2: "5%OFF",
+            3: "10%OFF",
+        }
+
+        try:
+            # `quest.reward`を整数に変換してマッピングを取得
+            reward_key = int(quest.reward)  # 型変換が必要な場合
+            quest.reward_display = reward_mapping.get(reward_key, "不明")
+        except (ValueError, TypeError):
+            # 型変換エラーや`None`の場合の対策
+            quest.reward_display = "不明"
+        
+        # デバッグ用: データ確認
+        print('do')
+        print(f"Quest ID: {quest.id}")
+        print(f"Quest Registers: {quest_registers}")
+        print(f"Quest Reward (display): {quest.reward}")
+        
+        # クエスト詳細ページを表示
+        context = {
+            'quest': quest, #クエスト情報
+            'quest_registers': quest_registers,  # お題情報
+        }
+        return render(request, self.template_name, context) 
+
     
     
-    
-    
+
     
     
     
