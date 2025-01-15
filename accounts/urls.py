@@ -28,6 +28,6 @@ urlpatterns = [
     # ログアウト完了
     path('logout_ok/', views.logoutok_view, name='logout_ok'),
     #アカウント情報変更
-    path('update-profile/', views.update_profile, name='update_profile'),
+    path('update_profile/', views.update_profile, name='update_profile'),
 
 ]
