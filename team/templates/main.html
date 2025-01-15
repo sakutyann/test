@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<div lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -207,72 +207,467 @@
 
   </style>
 </head>
-<body>
 
-  <!-- メインコンテンツ -->
-  <div class="content">
-    <h1>クエスト一覧</h1>
+<!-- メインコンテンツ -->
+<div class="content"><h1>クエスト一覧</h1>
     
-    <!-- 地域ごとのクエスト -->
-    <div class="region">
-      <h2>北海道・東北地方</h2>
+<!-- 北海道・東北地方 -->
+    <div class="region"><h2>北海道・東北地方</h2>
+
       <div class="prefecture">
-        <h3>北海道</h3>
-        <a class="quest-link" href="#">雪山を登ろう！</a>
-        <a class="quest-link" href="#">函館で名所めぐり</a>
+          <h3>北海道</h3>
+          {% for quest in prefectures.0 %}
+              <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+          {% empty %}
+              <p class="no-quest">クエストがありません</p>
+          {% endfor %}
       </div>
-      <div class="prefecture"><h3>青森県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>岩手県</h3><a class="quest-link" href="#">岩手山に登ろう！</a></div>
-      <div class="prefecture"><h3>宮城県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>秋田県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>山形県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>福島県</h3><p class="no-quest">クエストがありません</p></div>
+
+      <div class="prefecture">
+        <h3>青森県</h3>
+        {% for quest in prefectures.1 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>岩手県</h3>
+        {% for quest in prefectures.2 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>宮城県</h3>
+        {% for quest in prefectures.3 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>秋田県</h3>
+        {% for quest in prefectures.4 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>山形県</h3>
+        {% for quest in prefectures.5 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>福島県</h3>
+        {% for quest in prefectures.6 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+    </div>
+    
+<!-- 関東地方 -->
+    <div class="region"><h2>関東地方</h2>
+
+      <div class="prefecture">
+        <h3>東京都</h3>
+        {% for quest in prefectures.7 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>神奈川県</h3>
+        {% for quest in prefectures.8 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>埼玉県</h3>
+        {% for quest in prefectures.9 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>千葉県</h3>
+        {% for quest in prefectures.10 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>茨城県</h3>
+        {% for quest in prefectures.11 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>栃木県</h3>
+        {% for quest in prefectures.12 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>群馬県</h3>
+        {% for quest in prefectures.13 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+    </div>
+  
+<!-- 中部地方 -->
+    <div class="region"><h2>中部地方</h2>
+
+      <div class="prefecture">
+        <h3>新潟県</h3>
+        {% for quest in prefectures.14 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>富山県</h3>
+        {% for quest in prefectures.15 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>石川県</h3>
+        {% for quest in prefectures.16 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>福井県</h3>
+        {% for quest in prefectures.17 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>山梨県</h3>
+        {% for quest in prefectures.18 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>長野県</h3>
+        {% for quest in prefectures.19 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>岐阜県</h3>
+        {% for quest in prefectures.20 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>静岡県</h3>
+        {% for quest in prefectures.21 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>愛知県</h3>
+        {% for quest in prefectures.22 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
     </div>
 
-    <div class="region">
-      <h2>関東地方</h2>
-      <div class="prefecture"><h3>東京都</h3><a class="quest-link" href="#">東京タワーに登ろう</a></div>
-      <div class="prefecture"><h3>神奈川県</h3><a class="quest-link" href="#">江の島へ日帰り旅</a></div>
-      <div class="prefecture"><h3>埼玉県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>千葉県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>茨城県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>栃木県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>群馬県</h3><p class="no-quest">クエストがありません</p></div>
+<!-- 近畿地方 -->
+    <div class="region"><h2>近畿地方</h2>
+
+      <div class="prefecture">
+        <h3>三重県</h3>
+        {% for quest in prefectures.23 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>滋賀県</h3>
+        {% for quest in prefectures.24 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>京都府</h3>
+        {% for quest in prefectures.25 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>大阪府</h3>
+        {% for quest in prefectures.26 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>兵庫県</h3>
+        {% for quest in prefectures.27 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>奈良県</h3>
+        {% for quest in prefectures.28 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>和歌山県</h3>
+        {% for quest in prefectures.29 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
     </div>
 
-    <div class="region">
-      <h2>中部地方</h2>
-      <div class="prefecture"><h3>新潟県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>富山県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>石川県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>福井県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>山梨県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>長野県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>岐阜県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>静岡県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>愛知県</h3><p class="no-quest">クエストがありません</p></div>
+<!-- 中国地方 -->
+    <div class="region"><h2>中国地方</h2>
+
+      <div class="prefecture"><h3>鳥取県</h3>
+        
+        {% for quest in prefectures.30 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+      <div class="prefecture">
+        <h3>島根県</h3>
+        {% for quest in prefectures.31 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>岡山県</h3>
+        {% for quest in prefectures.32 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>広島県</h3>
+        {% for quest in prefectures.33 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>山口県</h3>
+        {% for quest in prefectures.34 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+     </div>
+
+<!-- 四国地方 -->
+    <div class="region"><h2>四国地方</h2>
+
+      <div class="prefecture">
+        <h3>徳島県</h3>
+        {% for quest in prefectures.35 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>香川県</h3>
+        {% for quest in prefectures.36 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>愛媛県</h3>
+        {% for quest in prefectures.37 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>高知県</h3>
+        {% for quest in prefectures.38 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
     </div>
 
-    <div class="region">
-      <h2>四国地方</h2>
-      <div class="prefecture"><h3>徳島県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>香川県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>愛媛県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>高知県</h3><p class="no-quest">クエストがありません</p></div>
-    </div>
+<!-- 九州・沖縄地方 -->
+    <div class="region"><h2>九州・沖縄地方</h2>
 
-    <div class="region">
-      <h2>九州・沖縄地方</h2>
-      <div class="prefecture"><h3>福岡県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>佐賀県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>長崎県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>熊本県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>大分県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>宮崎県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>鹿児島県</h3><p class="no-quest">クエストがありません</p></div>
-      <div class="prefecture"><h3>沖縄県</h3><a class="quest-link" href="#">首里城を訪れる</a></div>
+      <div class="prefecture">
+        <h3>福岡県</h3>
+        {% for quest in prefectures.39 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>佐賀県</h3>
+        {% for quest in prefectures.40 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>長崎県</h3>
+        {% for quest in prefectures.41 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>熊本県</h3>
+        {% for quest in prefectures.42 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>大分県</h3>
+        {% for quest in prefectures.43 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>宮崎県</h3>
+        {% for quest in prefectures.44 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>鹿児島県</h3>
+        {% for quest in prefectures.45 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
+      <div class="prefecture">
+        <h3>沖縄県</h3>
+        {% for quest in prefectures.46 %}
+            <a class="quest-link" href="{% url 'team:quest_detail' pk=quest.pk %}">{{ quest.title }}</a>
+        {% empty %}
+            <p class="no-quest">クエストがありません</p>
+        {% endfor %}
+      </div>
+
     </div>
-  </div>
+</div>
+
 
   <!-- ナビゲーションバー -->
   <nav class="nav-bar" id="navBar">

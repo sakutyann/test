@@ -1,21 +1,3 @@
-# from django.shortcuts import render
-# from django.views import View
-
-            
-# #クエスト一覧  
-# class MainView(View):
-#     """クエスト一覧ページのビュー"""
-#     template_name = "main.html"
-
-#     def get(self, request, *args, **kwargs):
-#         # ユーザーがログインしているかを確認し、必要な情報を提供
-#         context = {
-#             'is_authenticated': request.user.is_authenticated,
-#             'username': request.user.username if request.user.is_authenticated else None,
-#         }
-#         return render(request, self.template_name, context)    
-    
-    
 from django.shortcuts import render
 from django.views import View 
 from formapp.models import Quest  # Questモデルをインポート
@@ -79,60 +61,63 @@ class QuestDetailView(View):
         return render(request, self.template_name, context) 
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-def couponformworldfunction(request):
-          return render(request, 'coupon.html')
-
-def couponuseformworldfunction(request):
-          return render(request, 'couponuse.html')
-
-def couponendformworldfunction(request):
-          return render(request, 'couponend.html')
-
-def couponpastformworldfunction(request):
-          return render(request, 'couponpast.html')
 
 # 初期画面
 def title_view(request):
     return render(request, 'title.html')
+     
+    
+# クーポン一覧
+def couponformworldfunction(request):
+          return render(request, 'coupon.html')
 
-def questlookformworldfunction(request):
-          return render(request, 'questlook.html')
 
-def couponnotformworldfunction(request):
-          return render(request, 'couponnot.html')
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-def questokformworldfunction(request):
-          return render(request, 'questok.html')
 
-def questerformworldfunction(request):
-          return render(request, 'quester.html')
+# def couponuseformworldfunction(request):
+#           return render(request, 'couponuse.html')
 
-def newaccountformworldfunction(request):
-          return render(request, 'newaccount.html')
+# def couponendformworldfunction(request):
+#           return render(request, 'couponend.html')
+
+# def couponpastformworldfunction(request):
+#           return render(request, 'couponpast.html')
+
+# def questlookformworldfunction(request):
+#           return render(request, 'questlook.html')
+
+# def couponnotformworldfunction(request):
+#           return render(request, 'couponnot.html')
+
+# def questokformworldfunction(request):
+#           return render(request, 'questok.html')
+
+# def questerformworldfunction(request):
+#           return render(request, 'quester.html')
+
+# def newaccountformworldfunction(request):
+#           return render(request, 'newaccount.html')
 
 # 進行中クエスト
 # def questnowformworldfunction(request):
