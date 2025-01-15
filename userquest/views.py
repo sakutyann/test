@@ -22,8 +22,11 @@ def questnowformworldfunction(request):
 def questnotformworldfunction(request):
           return render(request, 'questnot.html')
 
-# def questdoformworldfunction(request):
-#           return render(request, 'questdo.html')
+def questdoformworldfunction(request):
+          return render(request, 'questdo.html')
+
+def questgoformworldfunction(request):
+          return render(request, 'questgo.html')
 
 # お題写真アップロード画面
 # def questgoformworldfunction(request):
@@ -80,10 +83,10 @@ class QuestGoView(View):
                 )
 
                 # 緯度・経度の範囲を計算
-                latitude_min = latitude - 1/70
-                latitude_max = latitude + 1/70
-                longitude_min = longitude - 1/70
-                longitude_max = longitude + 1/70
+                latitude_min = latitude - 1/10
+                latitude_max = latitude + 1/10
+                longitude_min = longitude - 1/10
+                longitude_max = longitude + 1/10
 
                 # 位置情報管理アプリのデータと照合（範囲内で検索）
                 if QuestRegister.objects.filter(
@@ -154,31 +157,59 @@ class QuestFinView(View):
 
 @login_required
 def coupon_list(request):
-    user_coupons = UserCoupon.objects.filter(user_account_id=request.user,
-                                             coupon_status=0)  # 未使用クーポン
-    
-    coupons = [
-        {
-            'id': user_coupon.coupon_id.coupon_id,
-            'name':user_coupon.coupon_id.coupon_description,
-        }
-        for user_coupon in user_coupons
-    ]
-    print(coupons)
-    return render(request, 'coupon.html', {'coupons': coupons})
+    user_coupons = UserCoupon.objects.filter(
+        user_account_id=request.user,
+        coupon_status=0  # 未使用クーポン
+    )
 
-def coupon_detail(request, coupon_id):
-    user_coupon = get_object_or_404(UserCoupon, coupon__id=coupon_id)
-    coupon = user_coupon.coupon
-    return render(request, 'coupon_detail.html', {'coupon': coupon, 'user_coupon': user_coupon})
+    PREFECTURES = {0:'北海道', 1:'青森県',2: '岩手県',3: '宮城県',4:'秋田県',5: '山形県',6: '福島県',7: '茨城県',8: '栃木県',9: '群馬県',10: '埼玉県',
+                   11:'千葉県',12:'東京都',13:'神奈川県',14: '新潟県',15:'富山県',16:'石川県',17: '福井県',18: '山梨県',19: '長野県',20:'岐阜県',21: '静岡県',
+                   22: '愛知県',23: '三重県',24: '滋賀県',25:'京都府',26: '大阪府',27: '兵庫県',28:'奈良県',29: '和歌山県',30: '鳥取県',31: '島根県',32: '岡山県',
+                   33:'広島県',34: '山口県',35: '徳島県',36 :'香川県',37 :'愛媛県',38: '高知県',39:'福岡県',40: '佐賀県',41: '長崎県',42: '熊本県',43: '大分県',
+                   44: '宮崎県',45: '鹿児島県',46: '沖縄県',}
+
+    categorized_coupons = {}
+    for user_coupon in user_coupons:
+        # `prefecture`を取得
+        prefecture_id = int(user_coupon.coupon_id.quest_id.prefecture)  # 数値に変換
+        prefecture_name = PREFECTURES.get(prefecture_id, "不明な地域")  # 地域名を取得
+
+        # クーポン情報を構築
+        coupon_info = {
+            'id': user_coupon.coupon_id.coupon_id,
+            'name': user_coupon.coupon_id.coupon_description,
+            'coupon_time': user_coupon.coupon_id.used_at,
+        }
+
+        # 地域ごとにクーポンを分類
+        if prefecture_name not in categorized_coupons:
+            categorized_coupons[prefecture_name] = []
+        categorized_coupons[prefecture_name].append(coupon_info)
+
+    # デバッグ用プリント（必要に応じて削除）
+    print(categorized_coupons)
+
+    return render(request, 'coupon.html', {'categorized_coupons': categorized_coupons})
+
+def coupon_use(request, coupon_id):
+    user_coupon = get_object_or_404(UserCoupon, coupon_id=coupon_id)
+    coupon = user_coupon.coupon_id
+    return render(request, 'couponuse.html', {'coupon': coupon})
 
 def used_coupons(request):
-    coupons = Coupon.objects.filter(status=True)  # 使用済みクーポン
-    return render(request, 'couponnot.html', {'coupons': coupons})
+    coupons = UserCoupon.objects.filter(user_account_id=request.user, coupon_status=True)
+    return render(request, 'couponpast.html', {'coupons': coupons})
 
-def coupon_complete(request):
-    # 完了メッセージの表示だけの場合
-    return render(request, 'couponend.html')
+def coupon_complete(request, coupon_id):
+    # UserCoupon のインスタンスを取得
+    user_coupon = get_object_or_404(UserCoupon, coupon_id=coupon_id)
+
+    # coupon_status を True に更新
+    user_coupon.coupon_status = True
+    user_coupon.save()
+
+    # couponend.html に遷移
+    return render(request, 'couponend.html', {'coupon': user_coupon})
 
 # クエスト挑戦画面
 def quest_challenge_view(request):

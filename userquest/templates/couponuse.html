@@ -70,12 +70,17 @@
   <div class="container">
     <h1 id="{{ coupon.coupon_description }}"></h1>
     <div class="details">
-      <p><strong>クーポンID:</strong> {{ coupon.id }}</p>
-      <p><strong>説明:</strong> {{ coupon.description }}</p>
+      <p>{{ coupon.coupon_id }}</p>
+      <p>{{ coupon.used_at }}</p>
     </div>
     <button class="use-btn" onclick="useCoupon()">使用する</button>
   </div>
 
-  
+  <script>
+    function useCoupon(){
+     window.location.href = `../couponend/{{ coupon.coupon_id }}`;
+    }
+ </script>
+
 </body>
 </html>
