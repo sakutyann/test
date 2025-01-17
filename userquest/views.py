@@ -198,7 +198,8 @@ def coupon_use(request, coupon_id):
 
 def used_coupons(request):
     coupons = UserCoupon.objects.filter(user_account_id=request.user, coupon_status=True)
-    return render(request, 'couponpast.html', {'coupon': coupons})
+    print(coupons)
+    return render(request, 'couponpast.html', {'coupons': coupons})
 
 def coupon_complete(request, coupon_id):
     # UserCoupon のインスタンスを取得
